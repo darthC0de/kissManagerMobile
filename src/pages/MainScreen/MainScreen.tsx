@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ScrollView, Text, StyleSheet, Alert } from 'react-native';
+import { View, Text, StyleSheet, Alert } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
@@ -10,7 +10,7 @@ export default function MainScreen() {
     const navigate = useNavigation();
 
     return (
-        <ScrollView style={styles.main}>
+        <View style={styles.main}>
             <View style={styles.viewButtons}>
                 <RectButton style={styles.buttons} onPress={() => navigate.navigate('GeneratePassword')}>
                     <LinearGradient
@@ -56,13 +56,14 @@ export default function MainScreen() {
                     </LinearGradient>
                 </RectButton>
             </View>
-        </ScrollView>
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
     main: {
         backgroundColor: "#0F3057",
+        height: "100%"
     },
 
     viewButtons: {

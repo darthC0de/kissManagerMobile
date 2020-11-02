@@ -9,10 +9,10 @@ import { Feather, Ionicons } from '@expo/vector-icons';
 export default function GeneratePassword() {
     const navigate = useNavigation();
     return (
-        <ScrollView style={styles.main}>
+        <View style={styles.main}>
             <View style={styles.backIcon}>
                 <Ionicons
-                    onPress={() => navigate.navigate('Inicio')}
+                    onPress={() => navigate.navigate('Main')}
                     name="md-arrow-round-back"
                     size={40} color="#008891"
                 />
@@ -49,11 +49,11 @@ export default function GeneratePassword() {
                         </LinearGradient>
                     </RectButton>
 
-                    <Feather style={styles.saveIcon} name="save" size={35} color="#008891" />
+                    <Feather style={styles.saveIcon} name="save" size={35} color="#fff" />
                 </View>
             </View>
 
-        </ScrollView>
+        </View>
     )
 }
 
@@ -153,7 +153,6 @@ const styles = StyleSheet.create({
     },
 
     saveIcon: {
-        backgroundColor: "#fff",
         borderRadius: 5,
         padding: 3,
         marginLeft: 5
