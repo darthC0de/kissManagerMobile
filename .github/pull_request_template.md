@@ -7,4 +7,4 @@
  - [ ] New feature
 
 # Changes made
- What have you added/removed
+ What have you added/removed to the code.
