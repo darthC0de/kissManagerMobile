@@ -1,15 +1,27 @@
-import React from 'react';
-import { View, Text, ScrollView, StyleSheet, Alert } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, ScrollView, StyleSheet, Clipboard, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useActive } from 'react-native-web-hooks';
 import { RectButton } from 'react-native-gesture-handler';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Feather, Ionicons } from '@expo/vector-icons';
 
+import passwordGenerator from '../../utils/passwordGenerator';
+
 export default function GeneratePassword() {
+    let [password, setPassword] = useState<string>('');
     const navigate = useNavigation();
+    
+    async function getPassword(){
+        let pwd = await passwordGenerator()
+        setPassword(pwd)
+    }    
+    async function setPasswordToClipboard(){
+        await Clipboard.setString(password);
+    }
+    
     return (
-        <ScrollView style={styles.main}>
+        <View style={styles.main}>
             <View style={styles.backIcon}>
                 <Ionicons
                     onPress={() => navigate.navigate('Inicio')}
@@ -20,14 +32,29 @@ export default function GeneratePassword() {
             <View style={styles.containerGenerate}>
                 <View style={styles.contentGenerate}>
                     <View style={styles.passwordOutput}>
-                        <Text style={styles.StylePassword}>2Hi3Lvy#bPnL</Text>
+                        {
+                            password.length > 0 ? (
+                                <Text 
+                                    style={styles.StylePassword}
+                                >{password}</Text>
+                            ) : (
+                                <Text 
+                                    style={styles.StylePasswordHint}
+                                >Clique em gerar</Text>
+                            )
+                        }
                     </View>
                     <View style={styles.copyIcon}>
-                        <Feather name="clipboard" size={40} color="#008891" />
+                        <Feather 
+                            name="clipboard" 
+                            size={40} 
+                            color="#008891" 
+                            onPress={setPasswordToClipboard}
+                        />
                     </View>
                 </View>
                 <View style={styles.buttonAndIcon}>
-                    <RectButton style={styles.button} onPress={() => Alert.alert('Funcionou!!')}>
+                    <RectButton style={styles.button} onPress={() => getPassword()}>
                         <LinearGradient
                             colors={['#0080b3', '#006e99', '#005b80', '#00587A']}
                             style={{
@@ -44,7 +71,6 @@ export default function GeneratePassword() {
 
                             }}
                         >
-                            {/* <AntDesign name="folder1" size={32} color="#fff" /> */}
                             <Text style={styles.textButton}>Gerar</Text>
                         </LinearGradient>
                     </RectButton>
@@ -53,7 +79,7 @@ export default function GeneratePassword() {
                 </View>
             </View>
 
-        </ScrollView>
+        </View>
     )
 }
 
@@ -106,6 +132,10 @@ const styles = StyleSheet.create({
 
     StylePassword: {
         color: "#0F3057",
+        fontSize: 24
+    },
+    StylePasswordHint: {
+        color: "#0F305766",
         fontSize: 24
     },
 

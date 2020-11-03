@@ -2,8 +2,8 @@ import React from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import MainScreen from './src/pages/MainScreen/MainScreen'
-import GeneratePassword from './src/pages/GeneratePassword/GeneratePassword'
+import MainScreen from './pages/MainScreen/MainScreen'
+import GeneratePassword from './pages/GeneratePassword/GeneratePassword'
 
 const { Navigator, Screen } = createStackNavigator();
 
