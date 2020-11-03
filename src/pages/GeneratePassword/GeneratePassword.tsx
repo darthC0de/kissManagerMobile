@@ -21,10 +21,14 @@ export default function GeneratePassword() {
     }
     
     return (
+<<<<<<< HEAD
         <View style={styles.main}>
+=======
+        <View style={styles.container}>
+>>>>>>> upstream/develop
             <View style={styles.backIcon}>
                 <Ionicons
-                    onPress={() => navigate.navigate('Inicio')}
+                    onPress={() => navigate.navigate('Main')}
                     name="md-arrow-round-back"
                     size={40} color="#008891"
                 />
@@ -75,7 +79,11 @@ export default function GeneratePassword() {
                         </LinearGradient>
                     </RectButton>
 
-                    <Feather style={styles.saveIcon} name="save" size={35} color="#008891" />
+                    <Feather
+                        onPress={() => navigate.navigate('CreatePassword')}
+                        style={styles.saveIcon}
+                        name="save" size={35}
+                        color="#fff" />
                 </View>
             </View>
 
@@ -84,7 +92,7 @@ export default function GeneratePassword() {
 }
 
 const styles = StyleSheet.create({
-    main: {
+    container: {
         backgroundColor: "#0F3057",
         flex: 1
     },
@@ -183,7 +191,6 @@ const styles = StyleSheet.create({
     },
 
     saveIcon: {
-        backgroundColor: "#fff",
         borderRadius: 5,
         padding: 3,
         marginLeft: 5
