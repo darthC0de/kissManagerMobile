@@ -1,14 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { TextInput, RectButton } from 'react-native-gesture-handler';
 import { LinearGradient } from 'expo-linear-gradient';
+import RNPickerSelect from 'react-native-picker-select';
+
+import passwordGenerator from '../../utils/passwordGenerator';
 
 import { Feather, Ionicons, FontAwesome, AntDesign } from '@expo/vector-icons';
 
 export default function CreatePassword() {
-    const navigate = useNavigation()
+    let [password, setPassword] = useState<string>('');
+    const [value, onChangeText] = React.useState('');
+    const navigate = useNavigation();
+
+    async function getPassword() {
+        let pwd = await passwordGenerator()
+        setPassword(pwd)
+    }
+
+    // let testeHint
+
     return (
         <View style={styles.container}>
             <Ionicons
@@ -17,7 +30,7 @@ export default function CreatePassword() {
                 name="md-arrow-round-back"
                 size={40} color="#008891"
             />
-        
+
             <View style={styles.field}>
                 <FontAwesome
                     style={styles.icons}
@@ -47,12 +60,15 @@ export default function CreatePassword() {
                     style={styles.icons}
                     name="key"
                     color="#008891"
-                />           
+                />
                 <TextInput
                     style={styles.inputPassword}
                     placeholder="Senha"
+                    onChangeText={text => onChangeText(text)}
+                    value={password.length > 0 ? password : value}
                 />
                 <AntDesign
+                    onPress={() => getPassword()}
                     style={styles.iconRetWeet}
                     name="retweet"
                     color="#fff"
@@ -77,6 +93,14 @@ export default function CreatePassword() {
                 name="lock" size={40}
                 color="#008891"
             />
+            <RNPickerSelect
+            onValueChange={(value) => console.log(value)}
+            items={[
+                { label: 'Database', value: 'database' },
+                { label: 'Credit-car', value: 'credit-car' },
+                { label: 'loud', value: 'cloud' },
+            ]}
+        />
 
             <RectButton style={styles.button}>
                 <LinearGradient
@@ -96,7 +120,7 @@ export default function CreatePassword() {
                     }}
                 >
                     <Feather name="save" size={32} color="#fff" />
-                    <Text style={styles.textButton}>Gerar</Text>
+                    <Text style={styles.textButton}>Salvar</Text>
                 </LinearGradient>
             </RectButton>
         </View>
@@ -136,7 +160,7 @@ const styles = StyleSheet.create({
 
     input: {
         backgroundColor: "#fff",
-        color: "#008891",
+        color: "#333",
 
         width: 271,
         height: 50,
@@ -149,7 +173,7 @@ const styles = StyleSheet.create({
 
     inputPassword: {
         backgroundColor: "#fff",
-        color: "#008891",
+        color: "#333",
 
         width: 235,
         height: 50,
