@@ -21,11 +21,8 @@ export default function GeneratePassword() {
     }
     
     return (
-<<<<<<< HEAD
-        <View style={styles.main}>
-=======
+
         <View style={styles.container}>
->>>>>>> upstream/develop
             <View style={styles.backIcon}>
                 <Ionicons
                     onPress={() => navigate.navigate('Main')}

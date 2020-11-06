@@ -63,11 +63,7 @@ export default function MainScreen() {
 const styles = StyleSheet.create({
     main: {
         backgroundColor: "#0F3057",
-<<<<<<< HEAD
         flex: 1,
-=======
-        height: "100%"
->>>>>>> upstream/develop
     },
 
     viewButtons: {
