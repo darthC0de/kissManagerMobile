@@ -34,7 +34,7 @@ export default function MainScreen() {
                     </LinearGradient>
                 </RectButton>
 
-                <RectButton style={styles.buttons} onPress={() => Alert.alert('Funcionou!!')}>
+                <RectButton style={styles.buttons} onPress={() => navigate.navigate('ManagerPassword')}>
                     <LinearGradient
                         colors={['#0080b3', '#006e99', '#005b80', '#00587A']}
                         style={{

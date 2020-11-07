@@ -4,7 +4,6 @@ import { useNavigation } from '@react-navigation/native';
 
 import { TextInput, RectButton } from 'react-native-gesture-handler';
 import { LinearGradient } from 'expo-linear-gradient';
-import RNPickerSelect from 'react-native-picker-select';
 
 import passwordGenerator from '../../utils/passwordGenerator';
 
@@ -118,16 +117,7 @@ export default function CreatePassword() {
                     </View>
                 </View>
 
-                {/* <RNPickerSelect
-            onValueChange={(value) => console.log(value)}
-            items={[
-                { label: 'Database', value: 'database' },
-                { label: 'Credit-car', value: 'credit-car' },
-                { label: 'loud', value: 'cloud' },
-            ]}
-        /> */}
-
-                <RectButton style={styles.button}>
+                <RectButton style={styles.button} onPress={() => navigate.navigate('ManagerPassword')}>
                     <LinearGradient
                         colors={['#0080b3', '#006e99', '#005b80', '#00587A']}
                         style={{
