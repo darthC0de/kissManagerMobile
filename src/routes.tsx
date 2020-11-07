@@ -2,10 +2,11 @@ import React from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+
 import MainScreen from './pages/MainScreen/MainScreen'
 import GeneratePassword from './pages/GeneratePassword/GeneratePassword'
-
 import CreatePassword from './pages/CreatePassword/CreatePassword'
+import ManagerPassword from './pages/ManagerPassword/ManagerPassword'
 
 
 const { Navigator, Screen } = createStackNavigator();
@@ -23,7 +24,15 @@ export default function Routes() {
                     name="GeneratePassword"
                     component={GeneratePassword}
                 />
-                <Screen name="CreatePassword" component={CreatePassword}/>
+
+
+                <Screen 
+                    name="CreatePassword" 
+                    component={CreatePassword}
+                />
+
+                <Screen name="ManagerPassword" component={ManagerPassword}/>
+
             </Navigator>
         </NavigationContainer>
     );
