@@ -20,8 +20,6 @@ export default function CreatePassword() {
         setPassword(pwd)
     }
 
-    // let testeHint
-
     return (
             <View style={styles.container}>
                 <Ionicons
