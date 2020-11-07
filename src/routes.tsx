@@ -8,6 +8,7 @@ import GeneratePassword from './pages/GeneratePassword/GeneratePassword'
 import CreatePassword from './pages/CreatePassword/CreatePassword'
 import ManagerPassword from './pages/ManagerPassword/ManagerPassword'
 
+
 const { Navigator, Screen } = createStackNavigator();
 
 export default function Routes() {
@@ -24,12 +25,14 @@ export default function Routes() {
                     component={GeneratePassword}
                 />
 
+
                 <Screen 
                     name="CreatePassword" 
                     component={CreatePassword}
                 />
 
                 <Screen name="ManagerPassword" component={ManagerPassword}/>
+
             </Navigator>
         </NavigationContainer>
     );
