@@ -65,9 +65,6 @@ const styles = StyleSheet.create({
         backgroundColor: "#0F3057",
 
         flex: 1,
-
-        height: "100%"
-
     },
 
     viewButtons: {

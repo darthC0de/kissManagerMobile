@@ -35,8 +35,10 @@ export default function GeneratePassword() {
     }
 
     return (
+
         <View style={styles.container}>
             <FlashMessage position="top" />
+
             <View style={styles.backIcon}>
                 <Ionicons
                     onPress={() => navigate.navigate('Main')}
