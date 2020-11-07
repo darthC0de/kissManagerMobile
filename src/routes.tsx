@@ -4,7 +4,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import MainScreen from './pages/MainScreen/MainScreen'
 import GeneratePassword from './pages/GeneratePassword/GeneratePassword'
+
 import CreatePassword from './pages/CreatePassword/CreatePassword'
+
 
 const { Navigator, Screen } = createStackNavigator();
 
