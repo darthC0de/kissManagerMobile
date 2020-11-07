@@ -1,105 +1,156 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { TextInput, RectButton } from 'react-native-gesture-handler';
 import { LinearGradient } from 'expo-linear-gradient';
+import RNPickerSelect from 'react-native-picker-select';
+
+import passwordGenerator from '../../utils/passwordGenerator';
 
 import { Feather, Ionicons, FontAwesome, AntDesign } from '@expo/vector-icons';
 
 export default function CreatePassword() {
-    const navigate = useNavigation()
+    let [password, setPassword] = useState<string>('');
+    const [value, onChangeText] = React.useState('');
+    const navigate = useNavigation();
+
+    async function getPassword() {
+        let pwd = await passwordGenerator()
+        setPassword(pwd)
+    }
+
+    // let testeHint
+
     return (
-        <View style={styles.container}>
-            <Ionicons
-                style={styles.backIcon}
-                onPress={() => navigate.navigate('GeneratePassword')}
-                name="md-arrow-round-back"
-                size={40} color="#008891"
-            />
-        
-            <View style={styles.field}>
-                <FontAwesome
-                    style={styles.icons}
-                    name="bookmark"
+            <View style={styles.container}>
+                <Ionicons
+                    style={styles.backIcon}
+                    onPress={() => navigate.navigate('GeneratePassword')}
+                    name="md-arrow-round-back"
+                    size={40} color="#008891"
+                />
+
+                <View style={styles.field}>
+                    <FontAwesome
+                        style={styles.icons}
+                        name="bookmark"
+                        color="#008891"
+                    />
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Título"
+                    />
+                </View>
+
+                <View style={styles.field}>
+                    <FontAwesome
+                        style={styles.icons}
+                        name="user"
+                        color="#008891"
+                    />
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Nome de usuário"
+                    />
+                </View>
+
+                <View style={styles.field}>
+                    <FontAwesome
+                        style={styles.icons}
+                        name="key"
+                        color="#008891"
+                    />
+                    <TextInput
+                        style={styles.inputPassword}
+                        placeholder="Senha"
+                        onChangeText={text => onChangeText(text)}
+                        value={password.length > 0 ? password : value}
+                    />
+                    <AntDesign
+                        onPress={() => getPassword()}
+                        style={styles.iconRetWeet}
+                        name="retweet"
+                        color="#fff"
+                    />
+                </View>
+
+                <View style={styles.field}>
+                    <Feather
+                        style={styles.icons}
+                        name="link"
+                        color="#008891"
+                    />
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Link"
+                    />
+                </View>
+
+                <Text style={styles.textSelectIcon}>Selecione um ícone</Text>
+                {/* <FontAwesome
+                    style={styles.lockIcon}
+                    name="lock" size={40}
                     color="#008891"
-                />
-                <TextInput
-                    style={styles.input}
-                    placeholder="Título"
-                />
+                    // onPress={() => styles.selectIcons = {height: 50} }
+                /> */}
+
+                <View>
+                    <View style={styles.selectIcons}>
+                        <Feather style={styles.icon} name="database" size={30} color="#fff" />
+                        <Feather style={styles.icon} name="credit-card" size={30} color="#fff" />
+                        <Feather style={styles.icon} name="cloud" size={30} color="#fff" />
+                        <Feather style={styles.icon} name="globe" size={30} color="#fff" />
+                        <Feather style={styles.icon} name="hash" size={30} color="#fff" />
+                        <Feather style={styles.icon} name="heart" size={30} color="#fff" />
+                        <Feather style={styles.icon} name="home" size={30} color="#fff" />
+                        <Feather style={styles.icon} name="inbox" size={30} color="#fff" />
+                        <Feather style={styles.icon} name="mail" size={30} color="#fff" />
+                        <Feather style={styles.icon} name="monitor" size={30} color="#fff" />
+                        <Feather style={styles.icon} name="smartphone" size={30} color="#fff" />
+                        <Feather style={styles.icon} name="shield" size={30} color="#fff" />
+                        <Feather style={styles.icon} name="terminal" size={30} color="#fff" />
+                        <Feather style={styles.icon} name="user" size={30} color="#fff" />
+                        <Feather style={styles.icon} name="lock" size={30} color="#fff" />
+                        <Feather style={styles.icon} name="aperture" size={30} color="#fff" />
+                        <Feather style={styles.icon} name="book" size={30} color="#fff" />
+                        <Feather style={styles.icon} name="bookmark" size={30} color="#fff" />
+                        <Feather style={styles.icon} name="code" size={30} color="#fff" />
+                        <Feather style={styles.icon} name="cpu" size={30} color="#fff" />
+                    </View>
+                </View>
+
+                {/* <RNPickerSelect
+            onValueChange={(value) => console.log(value)}
+            items={[
+                { label: 'Database', value: 'database' },
+                { label: 'Credit-car', value: 'credit-car' },
+                { label: 'loud', value: 'cloud' },
+            ]}
+        /> */}
+
+                <RectButton style={styles.button}>
+                    <LinearGradient
+                        colors={['#0080b3', '#006e99', '#005b80', '#00587A']}
+                        style={{
+                            position: 'absolute',
+                            left: 0,
+                            right: 0,
+                            top: 0,
+                            bottom: 0,
+                            borderRadius: 15,
+
+                            flexDirection: 'row',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+
+                        }}
+                    >
+                        <Feather name="save" size={32} color="#fff" />
+                        <Text style={styles.textButton}>Salvar</Text>
+                    </LinearGradient>
+                </RectButton>
             </View>
-
-            <View style={styles.field}>
-                <FontAwesome
-                    style={styles.icons}
-                    name="user"
-                    color="#008891"
-                />
-                <TextInput
-                    style={styles.input}
-                    placeholder="Nome de usuário"
-                />
-            </View>
-
-            <View style={styles.field}>
-                <FontAwesome
-                    style={styles.icons}
-                    name="key"
-                    color="#008891"
-                />           
-                <TextInput
-                    style={styles.inputPassword}
-                    placeholder="Senha"
-                />
-                <AntDesign
-                    style={styles.iconRetWeet}
-                    name="retweet"
-                    color="#fff"
-                />
-            </View>
-
-            <View style={styles.field}>
-                <Feather
-                    style={styles.icons}
-                    name="link"
-                    color="#008891"
-                />
-                <TextInput
-                    style={styles.input}
-                    placeholder="Link"
-                />
-            </View>
-
-            <Text style={styles.textSelectIcon}>Selecione um ícone</Text>
-            <FontAwesome
-                style={styles.lockIcon}
-                name="lock" size={40}
-                color="#008891"
-            />
-
-            <RectButton style={styles.button}>
-                <LinearGradient
-                    colors={['#0080b3', '#006e99', '#005b80', '#00587A']}
-                    style={{
-                        position: 'absolute',
-                        left: 0,
-                        right: 0,
-                        top: 0,
-                        bottom: 0,
-                        borderRadius: 15,
-
-                        flexDirection: 'row',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-
-                    }}
-                >
-                    <Feather name="save" size={32} color="#fff" />
-                    <Text style={styles.textButton}>Gerar</Text>
-                </LinearGradient>
-            </RectButton>
-        </View>
     );
 }
 
@@ -136,9 +187,9 @@ const styles = StyleSheet.create({
 
     input: {
         backgroundColor: "#fff",
-        color: "#008891",
+        color: "#333",
 
-        width: 271,
+        width: 300,
         height: 50,
 
         fontSize: 24,
@@ -149,9 +200,9 @@ const styles = StyleSheet.create({
 
     inputPassword: {
         backgroundColor: "#fff",
-        color: "#008891",
+        color: "#333",
 
-        width: 235,
+        width: 265,
         height: 50,
 
         fontSize: 24,
@@ -191,7 +242,9 @@ const styles = StyleSheet.create({
 
     textSelectIcon: {
         color: "#fff",
-        fontSize: 20
+        fontSize: 20,
+
+        margin: 10  
     },
 
     lockIcon: {
@@ -199,10 +252,53 @@ const styles = StyleSheet.create({
         height: 55,
         width: 55,
 
+        marginBottom: 10,
+
         textAlign: "center",
         textAlignVertical: "center",
 
         borderRadius: 15
+    },
+
+    // ViewselectIcons: {
+    //     backgroundColor: "#fff",
+    //     width: "90%",
+    //     borderRadius: 6
+    // },
+
+    selectIcons: {
+        // display: "none",
+        backgroundColor: "#00587a",
+        width: "100%",
+        borderRadius: 6,
+        // flex: 3,
+        // height: "50%",
+        flexDirection: "row",
+        flexWrap: "wrap",
+        alignSelf: "center",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: 10,
+        // alignItems: "center",
+
+        // borderWidth: 2,
+        // borderColor: "#000"
+        // shadowColor: "#fff",
+        // shadowOpacity: 50,
+        overflow: "hidden" 
+    },
+
+    icon: {
+        backgroundColor: "#008891",
+        margin: 5,
+
+        padding: 5,
+
+        textAlignVertical: "center",
+        textAlign: "center",
+        borderWidth: 1,
+        borderColor: "#333",
+        borderRadius: 6
     },
 
     button: {
@@ -210,8 +306,8 @@ const styles = StyleSheet.create({
 
         width: 140,
         height: 70,
-        marginTop: 10,
-        marginBottom: 10,
+        marginTop: 20,
+        marginBottom: 20,
 
         flexDirection: "row",
         justifyContent: "center",

@@ -1,31 +1,42 @@
 import React, { useState } from 'react';
 import { View, Text, ScrollView, StyleSheet, Clipboard, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { useActive } from 'react-native-web-hooks';
+// import { useActive } from 'react-native-web-hooks';
 import { RectButton } from 'react-native-gesture-handler';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Feather, Ionicons } from '@expo/vector-icons';
+
+import FlashMessage, { showMessage } from "react-native-flash-message";
 
 import passwordGenerator from '../../utils/passwordGenerator';
 
 export default function GeneratePassword() {
     let [password, setPassword] = useState<string>('');
     const navigate = useNavigation();
-    
-    async function getPassword(){
+
+    async function getPassword() {
         let pwd = await passwordGenerator()
         setPassword(pwd)
-    }    
-    async function setPasswordToClipboard(){
-        await Clipboard.setString(password);
     }
-    
+    async function setPasswordToClipboard() {
+        if (password.length > 0) {
+            await Clipboard.setString(password);
+
+            showMessage({
+                message: "Senha copiada com sucesso!",
+                type: "success",
+            });
+        } else {
+            showMessage({
+                message: "Pressione o botão (Gerar) primeiro!",
+                type: "danger",
+            });
+        }
+    }
+
     return (
-<<<<<<< HEAD
-        <View style={styles.main}>
-=======
         <View style={styles.container}>
->>>>>>> upstream/develop
+            <FlashMessage position="top" />
             <View style={styles.backIcon}>
                 <Ionicons
                     onPress={() => navigate.navigate('Main')}
@@ -38,21 +49,23 @@ export default function GeneratePassword() {
                     <View style={styles.passwordOutput}>
                         {
                             password.length > 0 ? (
-                                <Text 
+                                <Text
                                     style={styles.StylePassword}
                                 >{password}</Text>
                             ) : (
-                                <Text 
-                                    style={styles.StylePasswordHint}
-                                >Clique em gerar</Text>
-                            )
+                                    <Text
+                                        style={styles.StylePasswordHint}
+                                    >Clique em gerar</Text>
+                                )
                         }
                     </View>
-                    <View style={styles.copyIcon}>
-                        <Feather 
-                            name="clipboard" 
-                            size={40} 
-                            color="#008891" 
+                    <View
+                        style={styles.copyIcon}
+                    >
+                        <Feather
+                            name="clipboard"
+                            size={40}
+                            color="#008891"
                             onPress={setPasswordToClipboard}
                         />
                     </View>
