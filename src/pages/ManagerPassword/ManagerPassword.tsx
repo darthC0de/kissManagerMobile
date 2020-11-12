@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, StyleSheet, ScrollView } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
-import { Feather,AntDesign, Ionicons } from '@expo/vector-icons';
+import { Feather, AntDesign, Ionicons } from '@expo/vector-icons';
 
 export default function ManagerPassword() {
     const navigate = useNavigation();
@@ -29,6 +29,12 @@ export default function ManagerPassword() {
                         <Text style={styles.groupInfoTitle}>Title</Text>
                         <Text style={styles.groupInfoLink}>https://www.lastpass.com/</Text>
                     </View>
+                    <Feather
+                        name="log-in"
+                        size={30}
+                        color="#00587A"
+                        onPress={() => navigate.navigate('ViewPassword')}
+                    />
                 </View>
 
                 <View style={styles.passwordInfo}>
@@ -37,6 +43,12 @@ export default function ManagerPassword() {
                         <Text style={styles.groupInfoTitle}>Title</Text>
                         <Text style={styles.groupInfoLink}>https://www.figma.com/file/uQmfjWFmuPZ3oDKzZO8UTw/MobileApp?node-id=5%3A45</Text>
                     </View>
+                    <Feather
+                        name="log-in"
+                        size={30}
+                        color="#00587A"
+                        onPress={() => navigate.navigate('ViewPassword')}
+                    />
                 </View>
 
                 <View style={styles.passwordInfo}>
@@ -45,6 +57,12 @@ export default function ManagerPassword() {
                         <Text style={styles.groupInfoTitle}>Title</Text>
                         <Text style={styles.groupInfoLink}>https://www.lastpass.com/</Text>
                     </View>
+                    <Feather
+                        name="log-in"
+                        size={30}
+                        color="#00587A"
+                        onPress={() => navigate.navigate('ViewPassword')}
+                    />
                 </View>
 
                 <View style={styles.passwordInfo}>
@@ -53,6 +71,12 @@ export default function ManagerPassword() {
                         <Text style={styles.groupInfoTitle}>Title</Text>
                         <Text style={styles.groupInfoLink}>https://www.lastpass.com/</Text>
                     </View>
+                    <Feather
+                        name="log-in"
+                        size={30}
+                        color="#00587A"
+                        onPress={() => navigate.navigate('ViewPassword')}
+                    />
                 </View>
 
                 <View style={styles.passwordInfo}>
@@ -61,6 +85,12 @@ export default function ManagerPassword() {
                         <Text style={styles.groupInfoTitle}>Title</Text>
                         <Text style={styles.groupInfoLink}>https://www.lastpass.com/</Text>
                     </View>
+                    <Feather
+                        name="log-in"
+                        size={30}
+                        color="#00587A"
+                        onPress={() => navigate.navigate('ViewPassword')}
+                    />
                 </View>
 
                 <View style={styles.passwordInfo}>
@@ -69,6 +99,12 @@ export default function ManagerPassword() {
                         <Text style={styles.groupInfoTitle}>Title</Text>
                         <Text style={styles.groupInfoLink}>https://www.lastpass.com/</Text>
                     </View>
+                    <Feather
+                        name="log-in"
+                        size={30}
+                        color="#00587A"
+                        onPress={() => navigate.navigate('ViewPassword')}
+                    />
                 </View>
 
                 <View style={styles.passwordInfo}>
@@ -77,6 +113,12 @@ export default function ManagerPassword() {
                         <Text style={styles.groupInfoTitle}>Title</Text>
                         <Text style={styles.groupInfoLink}>https://www.lastpass.com/</Text>
                     </View>
+                    <Feather
+                        name="log-in"
+                        size={30}
+                        color="#00587A"
+                        onPress={() => navigate.navigate('ViewPassword')}
+                    />
                 </View>
 
                 <View style={styles.passwordInfo}>
@@ -85,6 +127,12 @@ export default function ManagerPassword() {
                         <Text style={styles.groupInfoTitle}>Title</Text>
                         <Text style={styles.groupInfoLink}>https://www.lastpass.com/</Text>
                     </View>
+                    <Feather
+                        name="log-in"
+                        size={30}
+                        color="#00587A"
+                        onPress={() => navigate.navigate('ViewPassword')}
+                    />
                 </View>
 
                 <View style={styles.passwordInfo}>
@@ -93,6 +141,12 @@ export default function ManagerPassword() {
                         <Text style={styles.groupInfoTitle}>Title</Text>
                         <Text style={styles.groupInfoLink}>https://www.lastpass.com/</Text>
                     </View>
+                    <Feather
+                        name="log-in"
+                        size={30}
+                        color="#00587A"
+                        onPress={() => navigate.navigate('ViewPassword')}
+                    />
                 </View>
 
                 <View style={styles.passwordInfo}>
@@ -101,6 +155,12 @@ export default function ManagerPassword() {
                         <Text style={styles.groupInfoTitle}>Title</Text>
                         <Text style={styles.groupInfoLink}>https://www.lastpass.com/</Text>
                     </View>
+                    <Feather
+                        name="log-in"
+                        size={30}
+                        color="#00587A"
+                        onPress={() => navigate.navigate('ViewPassword')}
+                    />
                 </View>
 
                 <View style={styles.passwordInfo}>
@@ -109,6 +169,12 @@ export default function ManagerPassword() {
                         <Text style={styles.groupInfoTitle}>Title</Text>
                         <Text style={styles.groupInfoLink}>https://www.lastpass.com/</Text>
                     </View>
+                    <Feather
+                        name="log-in"
+                        size={30}
+                        color="#00587A"
+                        onPress={() => navigate.navigate('ViewPassword')}
+                    />
                 </View>
             </ScrollView>
         </View>
@@ -137,23 +203,24 @@ const styles = StyleSheet.create({
 
         width: 350,
         minHeight: 90,
-    
+
         padding: 10,
         marginTop: 10,
-        
+
         flexDirection: "row",
         alignSelf: "center",
         alignItems: "center",
+        justifyContent: "space-around",
 
         borderRadius: 15,
     },
 
     groupInfo: {
-        maxWidth: "85%",
+        width: "76%",
         maxHeight: 100,
 
         marginLeft: 10,
-        overflow: "hidden",    
+        overflow: "hidden",
     },
 
     groupInfoTitle: {
