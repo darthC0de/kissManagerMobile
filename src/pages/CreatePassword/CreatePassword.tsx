@@ -6,12 +6,15 @@ import { TextInput, RectButton } from 'react-native-gesture-handler';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import passwordGenerator from '../../utils/passwordGenerator';
+import {iPassword } from '../../interface/Password';
+import PasswordServices from '../../database/services/Password'
 
 import { Feather, Ionicons, FontAwesome, AntDesign } from '@expo/vector-icons';
 
 export default function CreatePassword() {
+    // let [password, setPassword] = useState<string>('');
     let [password, setPassword] = useState<string>('');
-    const [value, onChangeText] = React.useState('');
+
     const navigate = useNavigation();
 
     async function getPassword() {
@@ -20,10 +23,10 @@ export default function CreatePassword() {
     }
 
     return (
-            <View style={styles.container}>
+            <ScrollView style={styles.container}>
                 <Ionicons
                     style={styles.backIcon}
-                    onPress={() => navigate.navigate('GeneratePassword')}
+                    onPress={() => navigate.goBack()}
                     name="md-arrow-round-back"
                     size={40} color="#008891"
                 />
@@ -61,8 +64,8 @@ export default function CreatePassword() {
                     <TextInput
                         style={styles.inputPassword}
                         placeholder="Senha"
-                        onChangeText={text => onChangeText(text)}
-                        value={password.length > 0 ? password : value}
+                        onChangeText={text => setPassword(text)}
+                        value={password}
                     />
                     <AntDesign
                         onPress={() => getPassword()}
@@ -138,7 +141,7 @@ export default function CreatePassword() {
                         <Text style={styles.textButton}>Salvar</Text>
                     </LinearGradient>
                 </RectButton>
-            </View>
+            </ScrollView>
     );
 }
 
@@ -149,7 +152,6 @@ const styles = StyleSheet.create({
         backgroundColor: "#0F3057",
 
         flex: 1,
-        alignItems: "center",
     },
 
     backIcon: {

@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { StatusBar } from 'expo-status-bar';
 import Routes from './src/routes';
-
+import databaseInit from './src/database/databaseInit';
 
 export default function App() {
+  new databaseInit
   return (
     <Routes />
   );
