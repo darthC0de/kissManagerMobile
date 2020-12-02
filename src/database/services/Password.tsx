@@ -11,7 +11,7 @@ export default class PasswordServices {
         return new Promise((resolve, reject) =>db.transaction(
             tx => {
                 tx.executeSql(`insert into ${table} (title,username,password,link,icon) 
-                values (?)`, 
+                values (?,?,?,?,?)`, 
                 [param.title,param.username,param.password,param.link,param.icon],
                 (_, { insertId, rows }) => {
                     console.log("id insert: " + insertId);

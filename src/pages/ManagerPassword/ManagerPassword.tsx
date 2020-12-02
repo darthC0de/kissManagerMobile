@@ -44,10 +44,14 @@ export default function ManagerPassword (){
             <ScrollView style={styles.containerPassword}>
                 <View style={styles.passwordInfo}>
                     <Feather name="database" size={30} color="#00587A" />
-                    <View style={styles.groupInfo}>
-                        <Text style={styles.groupInfoTitle}>Title</Text>
-                        <Text style={styles.groupInfoLink}>https://www.lastpass.com/</Text>
-                    </View>
+                    {
+                        passwords.map(password=>(
+                            <View key={password.id} style={styles.groupInfo}>
+                                <Text style={styles.groupInfoTitle}>{password.title}</Text>
+                                <Text style={styles.groupInfoLink}>{password.link}</Text>
+                            </View>
+                        ))
+                    }
                 </View>
 
                 

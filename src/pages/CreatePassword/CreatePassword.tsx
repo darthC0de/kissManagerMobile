@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import FlashMessage, { showMessage } from "react-native-flash-message";
 
 import { TextInput, RectButton } from 'react-native-gesture-handler';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -12,8 +13,14 @@ import PasswordServices from '../../database/services/Password'
 import { Feather, Ionicons, FontAwesome, AntDesign } from '@expo/vector-icons';
 
 export default function CreatePassword() {
-    // let [password, setPassword] = useState<string>('');
-    let [password, setPassword] = useState<string>('');
+    const [title, setTitle] = useState<string>('');
+    const [username, setUsername] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+    const [link, setLink] = useState<string>('');
+    const [icon, setIcon] = useState<any>('');
+    let counter = 0;
+
+    const icons = ["database","credit-card","cloud","globe","hash","heart","home","inbox","mail","monitor","smartphone","shield","terminal","user","lock","aperture","book","bookmark","code","cpu"]
 
     const navigate = useNavigation();
 
@@ -21,9 +28,28 @@ export default function CreatePassword() {
         let pwd = await passwordGenerator()
         setPassword(pwd)
     }
+    async function handleSavePassword(){
+        let pwdObj: iPassword = new iPassword(title, username, password, link, icon)
+        const response = await PasswordServices.addData(pwdObj)
+            .then(response =>{
+                if(response == null || response ==undefined){
+                    showMessage({
+                        message: "Não foi possível salvar a senha, por favor, tente novamente",
+                        type: "danger",
+                    });
+                    return;
+                }
+                showMessage({
+                    message: "Senha salva com sucesso",
+                    type: "success",
+                });
+                navigate.navigate('ManagerPassword')
+            })
+    }
 
     return (
             <ScrollView style={styles.container}>
+                <FlashMessage position="top" />
                 <Ionicons
                     style={styles.backIcon}
                     onPress={() => navigate.goBack()}
@@ -40,6 +66,8 @@ export default function CreatePassword() {
                     <TextInput
                         style={styles.input}
                         placeholder="Título"
+                        value={title}
+                        onChangeText={setTitle}
                     />
                 </View>
 
@@ -52,6 +80,8 @@ export default function CreatePassword() {
                     <TextInput
                         style={styles.input}
                         placeholder="Nome de usuário"
+                        value={username}
+                        onChangeText={setUsername}
                     />
                 </View>
 
@@ -64,7 +94,7 @@ export default function CreatePassword() {
                     <TextInput
                         style={styles.inputPassword}
                         placeholder="Senha"
-                        onChangeText={text => setPassword(text)}
+                        onChangeText={setPassword}
                         value={password}
                     />
                     <AntDesign
@@ -84,6 +114,8 @@ export default function CreatePassword() {
                     <TextInput
                         style={styles.input}
                         placeholder="Link"
+                        value={link}
+                        onChangeText={setLink}
                     />
                 </View>
 
@@ -97,30 +129,19 @@ export default function CreatePassword() {
 
                 <View>
                     <View style={styles.selectIcons}>
-                        <Feather style={styles.icon} name="database" size={30} color="#fff" />
-                        <Feather style={styles.icon} name="credit-card" size={30} color="#fff" />
-                        <Feather style={styles.icon} name="cloud" size={30} color="#fff" />
-                        <Feather style={styles.icon} name="globe" size={30} color="#fff" />
-                        <Feather style={styles.icon} name="hash" size={30} color="#fff" />
-                        <Feather style={styles.icon} name="heart" size={30} color="#fff" />
-                        <Feather style={styles.icon} name="home" size={30} color="#fff" />
-                        <Feather style={styles.icon} name="inbox" size={30} color="#fff" />
-                        <Feather style={styles.icon} name="mail" size={30} color="#fff" />
-                        <Feather style={styles.icon} name="monitor" size={30} color="#fff" />
-                        <Feather style={styles.icon} name="smartphone" size={30} color="#fff" />
-                        <Feather style={styles.icon} name="shield" size={30} color="#fff" />
-                        <Feather style={styles.icon} name="terminal" size={30} color="#fff" />
-                        <Feather style={styles.icon} name="user" size={30} color="#fff" />
-                        <Feather style={styles.icon} name="lock" size={30} color="#fff" />
-                        <Feather style={styles.icon} name="aperture" size={30} color="#fff" />
-                        <Feather style={styles.icon} name="book" size={30} color="#fff" />
-                        <Feather style={styles.icon} name="bookmark" size={30} color="#fff" />
-                        <Feather style={styles.icon} name="code" size={30} color="#fff" />
-                        <Feather style={styles.icon} name="cpu" size={30} color="#fff" />
+                        {
+                            icons.map(i=>{
+                                counter++;
+                                return (
+                                <Feather key={counter} style={styles.icon} onPress={()=>setIcon(i)} name={i} size={30} color="#fff" />
+                                )
+                            }
+                            )
+                        }
                     </View>
                 </View>
 
-                <RectButton style={styles.button} onPress={() => navigate.navigate('ManagerPassword')}>
+                <RectButton style={styles.button} onPress={() => handleSavePassword()}>
                     <LinearGradient
                         colors={['#0080b3', '#006e99', '#005b80', '#00587A']}
                         style={{
