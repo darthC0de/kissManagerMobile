@@ -48,7 +48,7 @@ export default function CreatePassword(props: any) {
                     message: "Senha salva com sucesso",
                     type: "success",
                 });
-
+                cleanData()
                 navigate.navigate('ManagerPassword')
             })
             .catch(err=>{

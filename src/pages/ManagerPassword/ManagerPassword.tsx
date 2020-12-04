@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Text, View, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, ScrollView, TouchableOpacity  } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Feather, AntDesign, Ionicons } from '@expo/vector-icons';
 
@@ -24,6 +24,8 @@ export default function ManagerPassword (){
         updatePasswordsList()
     },[])
     
+    
+        
     async function handleViewPassword(id: number){
         navigate.navigate('ViewPassword',{id})
     }

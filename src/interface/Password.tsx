@@ -5,6 +5,7 @@ export class iPassword {
     public password: string;
     public link: string;
     public icon: string;
+    
     constructor(title:string ,username: string,password:string, link?:string, icon?:string, id?: number){
         this.id = id ? id : 0;
         this.title = title;
