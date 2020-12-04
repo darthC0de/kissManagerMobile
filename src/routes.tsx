@@ -7,12 +7,10 @@ import MainScreen from './pages/MainScreen/MainScreen'
 import GeneratePassword from './pages/GeneratePassword/GeneratePassword'
 import CreatePassword from './pages/CreatePassword/CreatePassword'
 import ManagerPassword from './pages/ManagerPassword/ManagerPassword'
-<<<<<<< HEAD
 import { StatusBar } from 'expo-status-bar';
 
-=======
 import ViewPassword from './pages/ViewPassword/ViewPassword'
->>>>>>> upstream/develop
+import EditPassword from './pages/EditPassword/EditPassword';
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -44,6 +42,10 @@ export default function Routes() {
                 <Screen
                     name="ViewPassword"
                     component={ViewPassword}
+                />
+                <Screen
+                    name="EditPassword"
+                    component={EditPassword}
                 />
 
             </Navigator>

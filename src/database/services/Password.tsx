@@ -20,26 +20,28 @@ export default class PasswordServices {
                 }), (sqlError: Error) => {
                     console.log(sqlError);
                 }}, (txError) => {
-                console.log(txError);
+                reject(txError);
             }));
     }
 
      static deleteById(id: number) {
-        db.transaction(
+        return new Promise((resolve,reject)=>db.transaction(
             tx => {
                 tx.executeSql(`delete from ${table} where id = ?;`, [id], (_, { rows }) => {
+                    resolve(rows)
                 }), (sqlError: Error) => {
                     console.log(sqlError);
                 }}, (txError) => {
-                console.log(txError);
-    
-            });
+                reject(txError);
+            }));
+        
     }
 
 
      static updateById(param: iPassword) {
         return new Promise((resolve, reject) =>db.transaction(tx => {
-                tx.executeSql(`update ${table} set nome = ? where id = ?;`, [param.nome,param.id], () => {
+                tx.executeSql(`update ${table} set title = ?,username = ?,password = ?,link = ?,icon = ? where id = ?;`, [param.title,param.username,param.password,param.link,param.icon,param.id], (_,response) => {
+                    resolve(response)
                 }), (sqlError: Error) => {
                     console.log(sqlError);
                 }}, (txError) => {

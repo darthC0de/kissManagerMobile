@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import FlashMessage, { showMessage } from "react-native-flash-message";
@@ -12,53 +12,77 @@ import PasswordServices from '../../database/services/Password'
 
 import { Feather, Ionicons, FontAwesome, AntDesign } from '@expo/vector-icons';
 
-export default function CreatePassword(props: any) {
+export default function EditPassword(props: any) {
     const [title, setTitle] = useState<string>('');
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>(props.route.params ? props.route.params.password : '');
     const [link, setLink] = useState<string>('');
-    const [icon, setIcon] = useState<string>('database');
+    const [icon, setIcon] = useState<any>('');
     const [activeIcon, setActiveIcon] = useState<boolean>(false);
+    const [ pwdObj, setPwdObj] = useState<iPassword>({
+        "icon": "",
+        "id": 0,
+        "link": "",
+        "password": "",
+        "title": "",
+        "username": "",
+      });
+    
     let counter = 0;
 
     const icons = ["database","credit-card","cloud","globe","hash","heart","home","inbox","mail","monitor","smartphone","shield","terminal","user","lock","aperture","book","bookmark","code","cpu"]
 
     const navigate = useNavigation();
 
+    useEffect(()=>{
+        handleGetPasswordData(props.route.params.id)
+    },[])
+    
+    useEffect(()=>{
+        pwdObj.id = props.route.params.id
+        pwdObj.title = props.route.params.title
+        pwdObj.username = props.route.params.username
+        pwdObj.password = props.route.params.password
+        pwdObj.link = props.route.params.link
+        pwdObj.icon = props.route.params.icon
+        
+    },[title,username,password,link,icon])
+    
+    async function handleGetPasswordData(id: number){
+        let pwd = await PasswordServices.findById(id)
+            .then((response: any)=>{
+                setPwdObj(response._array[0])
+                setTitle(response._array[0].title)
+                setUsername(response._array[0].username)
+                // console.log(response._array)
+                setLink(response._array[0].link)
+            })
+    }
+    
     async function getPassword() {
         let pwd = await passwordGenerator()
         setPassword(pwd)
     }
-    function cleanData(){
-        setTitle('')
-        setPassword('')
-        setUsername('')
-        setLink('')
-        setIcon('database')
-    }
-    function handleIconSelect(e: number, i: string){
-        console.log(counter, i, icons[counter] )
+
+    function handleIconSelect(i: string){
+        // let element = document.querySelector(`name=${i}`)
+        // console.log(element)
+        setIcon(i)
     }
     async function handleSavePassword(){
         let pwdObj: iPassword = new iPassword(title, username, password, link, icon)
-        await PasswordServices.addData(pwdObj)
+        const response = await PasswordServices.updateById(pwdObj)
             .then(async (response) =>{
-                console.log(response)
                 showMessage({
                     message: "Senha salva com sucesso",
                     type: "success",
                 });
-
                 navigate.navigate('ManagerPassword')
             })
-            .catch(err=>{
-                showMessage({
-                    message: "Não foi possível salvar a senha, por favor, tente novamente",
-                    type: "danger",
-                });
-                console.log(err)
-            })
+            .catch(err=>console.log(err))
     }
+
+    
 
     return (
             <ScrollView style={styles.container}>
@@ -139,10 +163,7 @@ export default function CreatePassword(props: any) {
                             icons.map(i=>{
                                 counter++;
                                 return (
-                                <Feather key={counter} style={activeIcon ? styles.iconActive : styles.icon} onPress={(i)=>{
-                            
-                                    setIcon(i)
-                                }} name={i} size={30} color="#fff" />
+                                <Feather key={counter} style={activeIcon ? styles.iconActive : styles.icon} onPress={()=>handleIconSelect(i)} name={i} size={30} color="#fff" />
                                 )
                             }
                             )

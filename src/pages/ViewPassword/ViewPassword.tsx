@@ -1,27 +1,83 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
 import { TextInput } from 'react-native-gesture-handler';
-
 import { Feather, Ionicons, FontAwesome } from '@expo/vector-icons';
 
-export default function ViewPassword() {
+import {iPassword } from '../../interface/Password';
+import PasswordServices from '../../database/services/Password'
+
+export default function ViewPassword(props:any) {
     const navigate = useNavigation();
+    const identifier = props.route.params.id;
+    const [ pwdObj, setPwdObj] = useState<iPassword>({
+        "icon": "",
+        "id": 0,
+        "link": "",
+        "password": "",
+        "title": "",
+        "username": "",
+      });
+    const [title, setTitle] = useState<string>('');
+    const [username, setUsername] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+    const [link, setLink] = useState<string>('');
+    const [state, setState] = useState<boolean>(true);
+    
+    async function handlePasswordView(id: number){
+        let pwd = await PasswordServices.findById(id)
+            .then((response: any)=>{
+                setPwdObj(response._array[0])
+            })
+    }
+    async function handlePasswordDelete(id: number){
+        await PasswordServices.deleteById(id)
+            .then((response: any)=>{
+                setPwdObj({
+                    "icon": "",
+                    "id": 0,
+                    "link": "",
+                    "password": "",
+                    "title": "",
+                    "username": "",
+                  })
+                navigate.navigate('ManagerPassword')
+            })
+            .catch(err=>console.log(err))
+            
+    }
+    function handlePasswordPreview(){
+        state ? setState(false) : setState(true)
+    }
+
+    useEffect(()=>{
+        pwdObj.id = identifier
+        setTitle(pwdObj.title)
+        setUsername(pwdObj.username)
+        setPassword(pwdObj.password)
+        setLink(pwdObj.link)
+    },[pwdObj])
+    
+    handlePasswordView(identifier)
 
     return (
         <View style={styles.container}>
             <View style={styles.groupIcon}>
                 <Ionicons
-                    // style={styles.backIcon}
                     onPress={() => navigate.navigate('ManagerPassword')}
                     name="md-arrow-round-back"
                     size={40} color="#008891"
                 />
 
                 <Feather
-                    onPress={() => navigate.navigate('CreatePassword')}
+                    style={styles.editIcon}
+                    onPress={() => navigate.navigate('EditPassword',{id:identifier})}
                     name="edit"
+                    size={40} color="#008891"
+                />
+                <Feather
+                    onPress={() => handlePasswordDelete(identifier)}
+                    name="trash"
                     size={40} color="#008891"
                 />
             </View>
@@ -33,7 +89,7 @@ export default function ViewPassword() {
                     color="#008891"
                 />
                 <Text style={styles.text} >
-                    Title
+                    {title}
                 </Text>
             </View>
 
@@ -44,7 +100,7 @@ export default function ViewPassword() {
                     color="#008891"
                 />
                 <Text style={styles.text} >
-                    Username
+                    {username}
                 </Text>
             </View>
 
@@ -54,15 +110,16 @@ export default function ViewPassword() {
                     name="key"
                     color="#008891"
                 />
-                <TextInput
+                <Text
                     style={styles.inputPassword}
-                    secureTextEntry={true}
-                    value="Password"
-                />
+                >
+                    {state ? "••••••••••" : password}
+                </Text>
                 <Feather
                     style={styles.iconEye}
-                    name="eye"
+                    name={state ? "eye-off" : "eye"}
                     color="#008891"
+                    onPress={()=>handlePasswordPreview()}
                 />
             </View>
 
@@ -73,7 +130,7 @@ export default function ViewPassword() {
                     color="#008891"
                 />
                 <Text style={styles.text} >
-                    http://facebook.com/
+                    {link}
                 </Text>
             </View>
         </View >
@@ -98,6 +155,10 @@ const styles = StyleSheet.create({
 
         marginTop: 10,
         marginBottom: 40,
+    },
+    editIcon:{
+        position: "absolute",
+        right: 50,
     },
 
     field: {

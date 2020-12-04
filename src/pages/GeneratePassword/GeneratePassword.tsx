@@ -11,7 +11,7 @@ import FlashMessage, { showMessage } from "react-native-flash-message";
 import passwordGenerator from '../../utils/passwordGenerator';
 
 export default function GeneratePassword() {
-    let [password, setPassword] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
     const navigate = useNavigation();
 
     async function getPassword() {
@@ -95,7 +95,7 @@ export default function GeneratePassword() {
                     </RectButton>
 
                     <Feather
-                        onPress={() => navigate.navigate('CreatePassword')}
+                        onPress={() => navigate.navigate('CreatePassword',{password})}
                         style={styles.saveIcon}
                         name="save" size={35}
                         color="#fff" />
