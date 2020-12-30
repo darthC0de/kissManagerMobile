@@ -1,20 +1,77 @@
-<mxfile host="app.diagrams.net" modified="2020-12-30T22:28:43.461Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36" etag="Bl2bcWCMh272SEHcpYGZ" version="14.1.3" type="github">
+<mxfile host="app.diagrams.net" modified="2020-12-30T23:27:39.514Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36" etag="2azWz5B0I62LNh1DLkJc" version="14.1.3" type="github">
   <diagram id="WLeNL2iAT3cLDlL8Z_Fv" name="Page-1">
-    <mxGraphModel dx="868" dy="450" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
+    <mxGraphModel dx="1157" dy="1427" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="VE0QQg3p8Xf2kgtH1S0W-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="VE0QQg3p8Xf2kgtH1S0W-1" target="VE0QQg3p8Xf2kgtH1S0W-2">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="VE0QQg3p8Xf2kgtH1S0W-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" target="VE0QQg3p8Xf2kgtH1S0W-2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="660" y="-590" as="sourcePoint" />
+          </mxGeometry>
         </mxCell>
-        <mxCell id="VE0QQg3p8Xf2kgtH1S0W-1" value="Start App" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;" vertex="1" parent="1">
-          <mxGeometry x="340" y="30" width="120" height="60" as="geometry" />
+        <mxCell id="VE0QQg3p8Xf2kgtH1S0W-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="VE0QQg3p8Xf2kgtH1S0W-2" target="VE0QQg3p8Xf2kgtH1S0W-10">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="730" y="-340" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="VE0QQg3p8Xf2kgtH1S0W-2" value="Validação do app" style="rhombus;whiteSpace=wrap;html=1;rounded=0;sketch=1;" vertex="1" parent="1">
-          <mxGeometry x="345" y="159" width="110" height="110" as="geometry" />
+          <mxGeometry x="605" y="-521" width="110" height="110" as="geometry" />
         </mxCell>
         <mxCell id="VE0QQg3p8Xf2kgtH1S0W-4" value="&lt;h1&gt;&lt;span style=&quot;text-align: center&quot;&gt;&lt;font style=&quot;font-size: 16px&quot;&gt;Validação do app&lt;/font&gt;&lt;/span&gt;&lt;br&gt;&lt;/h1&gt;&lt;p&gt;A validação do app irá verificar se o app já foi rodado previamente, podemos utilizar o localStorage para armazenar uma variável. Algo como &quot;executed&quot; com a resposta true&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;sketch=1;" vertex="1" parent="1">
-          <mxGeometry x="480" y="159" width="210" height="120" as="geometry" />
+          <mxGeometry x="740" y="-521" width="210" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="VE0QQg3p8Xf2kgtH1S0W-5" value="Start App" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shadow=0;dashed=0;strokeWidth=1;shape=mxgraph.android.phone2;strokeColor=#c0c0c0;sketch=1;" vertex="1" parent="1">
+          <mxGeometry x="620" y="-780" width="80" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="VE0QQg3p8Xf2kgtH1S0W-6" value="" style="endArrow=classic;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="VE0QQg3p8Xf2kgtH1S0W-2" target="VE0QQg3p8Xf2kgtH1S0W-7">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="540" y="-436" as="sourcePoint" />
+            <mxPoint x="520" y="-466" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VE0QQg3p8Xf2kgtH1S0W-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="VE0QQg3p8Xf2kgtH1S0W-7" target="VE0QQg3p8Xf2kgtH1S0W-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VE0QQg3p8Xf2kgtH1S0W-7" value="False" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="500" y="-476" width="40" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="VE0QQg3p8Xf2kgtH1S0W-8" value="MainPage" style="whiteSpace=wrap;html=1;rounded=0;sketch=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="-40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="VE0QQg3p8Xf2kgtH1S0W-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="VE0QQg3p8Xf2kgtH1S0W-10" target="VE0QQg3p8Xf2kgtH1S0W-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VE0QQg3p8Xf2kgtH1S0W-10" value="True" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;sketch=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="-210" width="40" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="VE0QQg3p8Xf2kgtH1S0W-18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="VE0QQg3p8Xf2kgtH1S0W-13" target="VE0QQg3p8Xf2kgtH1S0W-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VE0QQg3p8Xf2kgtH1S0W-13" value="Apresentação do app" style="whiteSpace=wrap;html=1;sketch=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="-496" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="VE0QQg3p8Xf2kgtH1S0W-20" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="VE0QQg3p8Xf2kgtH1S0W-17" target="VE0QQg3p8Xf2kgtH1S0W-21">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="330" y="-216" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VE0QQg3p8Xf2kgtH1S0W-17" value="Cadastro SenhaMestre" style="whiteSpace=wrap;html=1;sketch=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="-356" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="VE0QQg3p8Xf2kgtH1S0W-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="VE0QQg3p8Xf2kgtH1S0W-21" target="VE0QQg3p8Xf2kgtH1S0W-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VE0QQg3p8Xf2kgtH1S0W-21" value="Se TouchID ou FaceID" style="rhombus;whiteSpace=wrap;html=1;rounded=0;sketch=1;" vertex="1" parent="1">
+          <mxGeometry x="275" y="-240" width="110" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="VE0QQg3p8Xf2kgtH1S0W-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="VE0QQg3p8Xf2kgtH1S0W-24" target="VE0QQg3p8Xf2kgtH1S0W-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VE0QQg3p8Xf2kgtH1S0W-24" value="False" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;sketch=1;" vertex="1" parent="1">
+          <mxGeometry x="460" y="-195" width="40" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="VE0QQg3p8Xf2kgtH1S0W-27" value="True" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;sketch=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="-90" width="40" height="20" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
