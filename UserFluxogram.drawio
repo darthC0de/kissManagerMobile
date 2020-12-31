@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-12-31T01:20:58.003Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36" etag="JbmQzXDnmpodVpi5nCDJ" version="14.1.3" type="github">
+<mxfile host="app.diagrams.net" modified="2020-12-31T01:27:30.372Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36" etag="Mg1m8f2p6_BTaezD4Itp" version="14.1.3" type="github">
   <diagram id="WLeNL2iAT3cLDlL8Z_Fv" name="Page-1">
     <mxGraphModel dx="1157" dy="1427" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="none" math="0" shadow="0">
       <root>
@@ -35,6 +35,9 @@
         <mxCell id="VE0QQg3p8Xf2kgtH1S0W-7" value="False" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="500" y="-476" width="40" height="20" as="geometry" />
         </mxCell>
+        <mxCell id="VE0QQg3p8Xf2kgtH1S0W-35" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="VE0QQg3p8Xf2kgtH1S0W-8" target="VE0QQg3p8Xf2kgtH1S0W-34">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="VE0QQg3p8Xf2kgtH1S0W-8" value="MainPage" style="whiteSpace=wrap;html=1;rounded=0;sketch=1;" vertex="1" parent="1">
           <mxGeometry x="600" y="-31" width="120" height="60" as="geometry" />
         </mxCell>
@@ -67,7 +70,7 @@
         <mxCell id="VE0QQg3p8Xf2kgtH1S0W-21" value="Se TouchID ou FaceID" style="rhombus;whiteSpace=wrap;html=1;rounded=0;sketch=1;" vertex="1" parent="1">
           <mxGeometry x="275" y="-240" width="110" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="VE0QQg3p8Xf2kgtH1S0W-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="VE0QQg3p8Xf2kgtH1S0W-24" target="VE0QQg3p8Xf2kgtH1S0W-8">
+        <mxCell id="VE0QQg3p8Xf2kgtH1S0W-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="1" source="VE0QQg3p8Xf2kgtH1S0W-24" target="VE0QQg3p8Xf2kgtH1S0W-8">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="VE0QQg3p8Xf2kgtH1S0W-24" value="False" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;sketch=1;" vertex="1" parent="1">
@@ -81,13 +84,49 @@
         <mxCell id="VE0QQg3p8Xf2kgtH1S0W-27" value="True" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;sketch=1;" vertex="1" parent="1">
           <mxGeometry x="310" y="-80" width="40" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="VE0QQg3p8Xf2kgtH1S0W-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="VE0QQg3p8Xf2kgtH1S0W-30">
+        <mxCell id="VE0QQg3p8Xf2kgtH1S0W-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" edge="1" parent="1" source="VE0QQg3p8Xf2kgtH1S0W-30" target="VE0QQg3p8Xf2kgtH1S0W-8">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="600" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="VE0QQg3p8Xf2kgtH1S0W-30" value="Registrar TouchID/FaceID" style="whiteSpace=wrap;html=1;rounded=0;sketch=1;" vertex="1" parent="1">
-          <mxGeometry x="271" y="-30" width="120" height="60" as="geometry" />
+          <mxGeometry x="270" y="-16" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="VE0QQg3p8Xf2kgtH1S0W-34" value="CreatePassword" style="whiteSpace=wrap;html=1;rounded=0;sketch=1;" vertex="1" parent="1">
+          <mxGeometry x="860" y="-31" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="VE0QQg3p8Xf2kgtH1S0W-36" value="ManagePasswords" style="whiteSpace=wrap;html=1;rounded=0;sketch=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="109" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="VE0QQg3p8Xf2kgtH1S0W-38" value="SavePassword" style="whiteSpace=wrap;html=1;rounded=0;sketch=1;" vertex="1" parent="1">
+          <mxGeometry x="862" y="109" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="VE0QQg3p8Xf2kgtH1S0W-40" value="" style="endArrow=classic;startArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="VE0QQg3p8Xf2kgtH1S0W-36" target="VE0QQg3p8Xf2kgtH1S0W-38">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="750" y="130" as="sourcePoint" />
+            <mxPoint x="800" y="80" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VE0QQg3p8Xf2kgtH1S0W-41" value="" style="endArrow=classic;startArrow=classic;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="VE0QQg3p8Xf2kgtH1S0W-36" target="VE0QQg3p8Xf2kgtH1S0W-8">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="750" y="130" as="sourcePoint" />
+            <mxPoint x="800" y="80" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VE0QQg3p8Xf2kgtH1S0W-42" value="" style="endArrow=classic;startArrow=classic;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="VE0QQg3p8Xf2kgtH1S0W-38" target="VE0QQg3p8Xf2kgtH1S0W-34">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="750" y="130" as="sourcePoint" />
+            <mxPoint x="800" y="80" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VE0QQg3p8Xf2kgtH1S0W-43" value="ViewPassword" style="whiteSpace=wrap;html=1;rounded=0;sketch=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="250" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="VE0QQg3p8Xf2kgtH1S0W-44" value="" style="endArrow=classic;startArrow=classic;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="VE0QQg3p8Xf2kgtH1S0W-43" target="VE0QQg3p8Xf2kgtH1S0W-36">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="745" y="301" as="sourcePoint" />
+            <mxPoint x="655" y="200" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
