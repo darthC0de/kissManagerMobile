@@ -23,7 +23,13 @@
       "favicon": "./assets/favicon.png"
     },
     "android": {
-      "package": "com.rodcordeiro.kissManager"
-    }
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#A9F448"
+      },
+      "package": "com.darthcode.kissManager"
+    },
+    "description": "Gerenciador de senhas",
+    "githubUrl": "https://github.com/rodcordeiro/kissManagerMobile"
   }
 }
