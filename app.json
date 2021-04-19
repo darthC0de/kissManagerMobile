@@ -2,7 +2,10 @@
   "expo": {
     "name": "kissManager",
     "slug": "kissManager",
-    "version": "37.0.0",
+    "version": "2.0.0",
+    "description": "Gerenciador de senhas",
+    "owner": "darthcode",
+    "githubUrl": "https://github.com/rodcordeiro/kissManagerMobile",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -23,13 +26,12 @@
       "favicon": "./assets/favicon.png"
     },
     "android": {
+      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#A9F448"
       },
       "package": "com.darthcode.kissManager"
-    },
-    "description": "Gerenciador de senhas",
-    "githubUrl": "https://github.com/rodcordeiro/kissManagerMobile"
+    }
   }
 }
