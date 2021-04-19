@@ -8,13 +8,15 @@
     "githubUrl": "https://github.com/rodcordeiro/kissManagerMobile",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "primarycolor":"#00587A",
+    "backgroundColor": "#00587A",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "cover",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#00587A",
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 30000
     },
     "assetBundlePatterns": [
       "**/*"
@@ -32,6 +34,11 @@
         "backgroundColor": "#A9F448"
       },
       "package": "com.darthcode.kissManager"
+    },
+    "notification":{
+      "color":"#00587A",
+      "iosdisplayinforeground":true,
+      "androidmode":"default"
     }
   }
 }
