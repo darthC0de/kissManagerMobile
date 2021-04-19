@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "144021166720",
+    "firebase_url": "https://cordeiro-177115.firebaseio.com",
+    "project_id": "cordeiro-177115",
+    "storage_bucket": "cordeiro-177115.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:144021166720:android:abef10800adb20d8592465",
+        "android_client_info": {
+          "package_name": "com.darthcode.kissManager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "144021166720-p1sjr2kb5gep267sjpjq0s7gfd8dk3kq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADgKulnqa1ENXX-nyL39TsBLYXyzZ1318"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "144021166720-m213qaukujjq8vkupd5gl352e6dh0ol5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
