@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, ScrollView, StyleSheet, Clipboard, Alert } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-// import { useActive } from 'react-native-web-hooks';
 import { RectButton } from 'react-native-gesture-handler';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Feather, Ionicons } from '@expo/vector-icons';
-
+import Clipboard from '@react-native-community/clipboard';
 import FlashMessage, { showMessage } from "react-native-flash-message";
 
 import passwordGenerator from '../../utils/passwordGenerator';

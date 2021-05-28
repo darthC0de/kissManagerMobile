@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import FlashMessage, { showMessage } from "react-native-flash-message";
+
+import Clipboard from '@react-native-community/clipboard';
 
 import { TextInput, RectButton } from 'react-native-gesture-handler';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -19,6 +21,13 @@ export default function CreatePassword(props: any) {
     const [link, setLink] = useState<string>('');
     const [icon, setIcon] = useState<string>('database');
     const [activeIcon, setActiveIcon] = useState<boolean>(false);
+    const [load, setLoad] = useState<boolean>(true);
+    
+
+    function handleLoader(state: boolean = false){
+        state ? setLoad(state): setLoad(false);
+    }
+
     let counter = 0;
 
     const icons = ["database","credit-card","cloud","globe","hash","heart","home","inbox","mail","monitor","smartphone","shield","terminal","user","lock","aperture","book","bookmark","code","cpu"]
@@ -41,15 +50,16 @@ export default function CreatePassword(props: any) {
     }
     async function handleSavePassword(){
         let pwdObj: iPassword = new iPassword(title, username, password, link, icon)
+        if (!title && !password ) return;
         await PasswordServices.addData(pwdObj)
             .then(async (response) =>{
                 console.log(response)
-                showMessage({
+                await showMessage({
                     message: "Senha salva com sucesso",
                     type: "success",
                 });
                 cleanData()
-                navigate.navigate('ManagerPassword')
+                navigate.navigate('ManagerPassword',{updatePasswords: true})
             })
             .catch(err=>{
                 showMessage({
@@ -61,8 +71,15 @@ export default function CreatePassword(props: any) {
     }
 
     return (
-            <ScrollView style={styles.container}>
+            <ScrollView style={styles.container} onLayout={()=>handleLoader()}>
                 <FlashMessage position="top" />
+                <ActivityIndicator 
+                    color="#008891" 
+                    size={100}
+                    animating={load}
+                    hidesWhenStopped={true}
+                    style={styles.loader}
+                />
                 <Ionicons
                     style={styles.backIcon}
                     onPress={() => navigate.goBack()}
@@ -107,8 +124,10 @@ export default function CreatePassword(props: any) {
                     <TextInput
                         style={styles.inputPassword}
                         placeholder="Senha"
+                        secureTextEntry={true}
                         onChangeText={setPassword}
                         value={password}
+                        textContentType="newPassword"
                     />
                     <AntDesign
                         onPress={() => getPassword()}
@@ -139,7 +158,7 @@ export default function CreatePassword(props: any) {
                             icons.map(i=>{
                                 counter++;
                                 return (
-                                <Feather key={counter} style={activeIcon ? styles.iconActive : styles.icon} onPress={(i)=>{
+                                <Feather key={counter} style={icon == i ? styles.iconActive : styles.icon} onPress={()=>{
                             
                                     setIcon(i)
                                 }} name={i} size={30} color="#fff" />
@@ -353,5 +372,13 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         fontSize: 24,
         color: "#fff",
+    },
+    loader:{
+        position: 'absolute',
+        zIndex: 5,
+        width:100,
+        height:100,
+        top:50,
+        alignSelf:'center',        
     }
 })
