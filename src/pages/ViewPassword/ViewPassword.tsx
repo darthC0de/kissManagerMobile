@@ -1,15 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { TextInput } from 'react-native-gesture-handler';
 import { Feather, Ionicons, FontAwesome } from '@expo/vector-icons';
+import Clipboard from '@react-native-community/clipboard';
+
+import FlashMessage, { showMessage } from "react-native-flash-message";
 
 import {iPassword } from '../../interface/Password';
+
 import PasswordServices from '../../database/services/Password'
 
 export default function ViewPassword(props:any) {
     const navigate = useNavigation();
-    const identifier = props.route.params.id;
+    let identifier: number = 0;
+    if (props.route.params){
+        identifier = props.route.params.id;
+    } else {
+        navigate.navigate('ManagerPassword')
+    }
     const [ pwdObj, setPwdObj] = useState<iPassword>({
         "icon": "",
         "id": 0,
@@ -23,45 +31,68 @@ export default function ViewPassword(props:any) {
     const [password, setPassword] = useState<string>('');
     const [link, setLink] = useState<string>('');
     const [state, setState] = useState<boolean>(true);
+
+    const [load, setLoad] = useState<boolean>(true);
     
+    async function setValueToClipboard(valueName: any, value: any) {
+            Clipboard.setString(value);
+    }
     async function handlePasswordView(id: number){
-        let pwd = await PasswordServices.findById(id)
+        
+        await PasswordServices.findById(id)
             .then((response: any)=>{
+                 
                 setPwdObj(response._array[0])
+                handleLoader()
             })
     }
+    function handleLoader(state: boolean = false){
+        state ? setLoad(state): setLoad(false);
+    }
     async function handlePasswordDelete(id: number){
+        handleLoader(true)
+        console.log({load})
         await PasswordServices.deleteById(id)
             .then((response: any)=>{
-                setPwdObj({
-                    "icon": "",
-                    "id": 0,
-                    "link": "",
-                    "password": "",
-                    "title": "",
-                    "username": "",
-                  })
-                navigate.navigate('ManagerPassword')
+                navigate.navigate('ManagerPassword',{updatePasswords: true})
             })
-            .catch(err=>console.log(err))
+            .catch(err=>{
+                throw new Error(err)
+            })
             
     }
     function handlePasswordPreview(){
         state ? setState(false) : setState(true)
     }
+    function passwordHasher(){
+        let i:number;
+        let hashed: string = '';
+        for(i=0;i<password.length;i++){
+            hashed += '•';
+        }
+        return hashed;
+    }
 
     useEffect(()=>{
-        pwdObj.id = identifier
-        setTitle(pwdObj.title)
-        setUsername(pwdObj.username)
-        setPassword(pwdObj.password)
-        setLink(pwdObj.link)
-    },[pwdObj])
-    
+            setTitle(pwdObj.title);
+            setUsername(pwdObj.username);
+            setPassword(pwdObj.password);
+            setLink(pwdObj.link);
+        
+    },[load])
+
     handlePasswordView(identifier)
 
     return (
         <View style={styles.container}>
+            <FlashMessage position="top" />
+            <ActivityIndicator 
+                color="#008891" 
+                size={100}
+                animating={load}
+                hidesWhenStopped={true}
+                style={styles.loader}
+            />
             <View style={styles.groupIcon}>
                 <Ionicons
                     onPress={() => navigate.navigate('ManagerPassword')}
@@ -93,7 +124,10 @@ export default function ViewPassword(props:any) {
                 </Text>
             </View>
 
-            <View style={styles.field}>
+            <View 
+                style={styles.field}
+                onTouchStart={() => setValueToClipboard("username",username)}
+            >
                 <FontAwesome
                     style={styles.icons}
                     name="user"
@@ -104,7 +138,10 @@ export default function ViewPassword(props:any) {
                 </Text>
             </View>
 
-            <View style={styles.field}>
+            <View 
+                style={styles.field}
+                onTouchStart={() => setValueToClipboard("password",password)}
+            >
                 <FontAwesome
                     style={styles.icons}
                     name="key"
@@ -113,7 +150,7 @@ export default function ViewPassword(props:any) {
                 <Text
                     style={styles.inputPassword}
                 >
-                    {state ? "••••••••••" : password}
+                    {state ? passwordHasher() : password}
                 </Text>
                 <Feather
                     style={styles.iconEye}
@@ -123,7 +160,10 @@ export default function ViewPassword(props:any) {
                 />
             </View>
 
-            <View style={styles.field}>
+            <View 
+                style={styles.field}
+                onTouchStart={() => setValueToClipboard("link",link)}
+            >
                 <Feather
                     style={styles.icons}
                     name="link"
@@ -221,4 +261,12 @@ const styles = StyleSheet.create({
         textAlignVertical: "center",
         justifyContent: "center",
     },
+    loader:{
+        position: 'absolute',
+        zIndex: 5,
+        width:100,
+        height:100,
+        top:50,
+        alignSelf:'center',        
+    }
 })

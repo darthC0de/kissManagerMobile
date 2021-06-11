@@ -77,7 +77,7 @@ export default function EditPassword(props: any) {
                     message: "Senha salva com sucesso",
                     type: "success",
                 });
-                navigate.navigate('ManagerPassword')
+                navigate.navigate('ManagerPassword',{updatePasswords: true})
             })
             .catch(err=>console.log(err))
     }
