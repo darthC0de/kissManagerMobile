@@ -5,6 +5,7 @@
 # Type of PR
  - [ ] Bugfix
  - [ ] New feature
+ - [ ] Documentation
 
 # Changes made
  What have you added/removed to the code.

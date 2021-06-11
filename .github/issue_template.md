@@ -5,6 +5,7 @@
 # Type of Issue
  - [ ] Bug
  - [ ] Feature request
+ - [ ] Documentation
 
 # Examples
 
