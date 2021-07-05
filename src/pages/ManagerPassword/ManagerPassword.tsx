@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Text, View, StyleSheet, ScrollView, TouchableOpacity  } from 'react-native';
+import { Text, View, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator  } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Feather, AntDesign, Ionicons } from '@expo/vector-icons';
 
@@ -7,24 +7,40 @@ import {iPassword } from '../../interface/Password';
 import PasswordServices from '../../database/services/Password'
 
 
-export default function ManagerPassword (){
-    
-
+export default function ManagerPassword (props: any){
+    const [runned,setRunned] = useState<boolean>(false);
+    const [updatePasswords,setUpdatePasswords] = useState<boolean>(props.route.params ? props.route.params.updatePasswords : false)
     const navigate = useNavigation();
     const [passwords, setPasswords] = useState<Array<iPassword>>([]);
 
+    const [load, setLoad] = useState<boolean>(true);
+
+    function handleLoader(state: boolean = false){
+        state ? setLoad(state): setLoad(false);
+    }
     async function updatePasswordsList() {
-        const passwords = await PasswordServices.findAll()
+        
+            await PasswordServices.findAll()
             .then((response: any)=>{
                 setPasswords(response._array)
             })
+        
     }
 
-    useEffect(()=>{
-        updatePasswordsList()
+    useEffect(() => {
+        
+        if(updatePasswords || !runned){
+            console.log({updatePasswords,runned})
+            updatePasswordsList()
+            setUpdatePasswords(false);
+            console.log({updatePasswords,runned})            
+        }
+        setRunned(true);
+        handleLoader()
+        
     },[])
     
-    
+    updatePasswordsList()
         
     async function handleViewPassword(id: number){
         navigate.navigate('ViewPassword',{id})
@@ -32,6 +48,13 @@ export default function ManagerPassword (){
 
     return (
         <View style={styles.container}>
+            <ActivityIndicator 
+                color="#008891" 
+                size={100}
+                animating={load}
+                hidesWhenStopped={true}
+                style={styles.loader}
+            />
             <View style={styles.groupIcon}>
                 <Ionicons
                     onPress={() => navigate.goBack()}
@@ -115,5 +138,13 @@ const styles = StyleSheet.create({
     groupInfoLink: {
         color: "#008891",
         fontSize: 17,
+    },
+    loader:{
+        position: 'absolute',
+        zIndex: 5,
+        width:100,
+        height:100,
+        top:50,
+        alignSelf:'center',        
     }
 })
