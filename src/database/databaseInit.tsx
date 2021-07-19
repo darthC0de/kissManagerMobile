@@ -5,8 +5,7 @@ var db: any = null;
 export default class databaseInit {
     constructor() {
         db = DatabaseConnection.getConnection()
-        db.exec([{ sql: 'PRAGMA foreign_keys = ON;', args: [] }], false, () =>
-        console.log('Foreign keys turned on')
+        db.exec([{ sql: 'PRAGMA foreign_keys = ON;', args: [] }], false, () =>{ }
     );
         this.InitDb()
     }

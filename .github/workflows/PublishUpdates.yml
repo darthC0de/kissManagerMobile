@@ -1,10 +1,10 @@
-name: Expo Publish
+name: Expo actions
 on:
   push:
     branches:
       - main
 jobs:
-  publish:
+  Publish_Updates:
     name: Install and publish
     runs-on: ubuntu-latest
     steps:
@@ -19,4 +19,18 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
       - run: npm install
       - run: expo publish
-      - run: expo build:android -t apk
+  GenerateNewBuild:
+    name: Build new artifact
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+      - uses: expo/expo-github-action@v6
+        with:
+          expo-version: 4.x
+          expo-cache: true
+          token: ${{ secrets.EXPO_TOKEN }}
+      - run: npm install
+      - run: expo build:android -t apk --no-wait

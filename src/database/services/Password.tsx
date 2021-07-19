@@ -5,8 +5,6 @@ const table = "passwords"
 const db=DatabaseConnection.getConnection()
 
 export default class PasswordServices {
-
-
      static addData(param: iPassword) {
         return new Promise((resolve, reject) =>db.transaction(
             tx => {
@@ -74,6 +72,4 @@ export default class PasswordServices {
 
 
     }
-
-
 }
