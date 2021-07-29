@@ -2,10 +2,11 @@ name: Expo actions
 on:
   push:
     branches:
-      - main
+      - master
 jobs:
   Publish_Updates:
     name: Install and publish
+    if: "contains(github.event.head_commit.message, '[Release]')" # If commit message contains "[Released]" only then this job would be run.
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -22,6 +23,7 @@ jobs:
   GenerateNewBuild:
     name: Build new artifact
     runs-on: ubuntu-latest
+    needs: Publish_Updates
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
@@ -33,4 +35,23 @@ jobs:
           expo-cache: true
           token: ${{ secrets.EXPO_TOKEN }}
       - run: npm install
-      - run: expo build:android -t apk --no-wait
+      - run: expo build:android -t apk > ./build_status.txt
+      - name: Upload result for building job
+        uses: actions/upload-artifact@v2
+        with:
+          name: build_status
+          path: ./build_status.txt
+  ShowBuildResult:
+    name: Show results
+    runs-on: ubuntu-latest
+    needs: GenerateNewBuild
+    steps:
+      - name: Download result for building job
+        uses: actions/download-artifact@v2
+        with:
+          name: build_status
+      - name: Print result for building job
+        shell: bash
+        run: |
+          value=`cat ./build_status.txt`
+          echo $value | grep "expo.io/artifacts"

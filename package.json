@@ -39,5 +39,18 @@
     "@types/react-native": "~0.63.2",
     "typescript": "~3.9.5"
   },
-  "private": true
+  "private": true,
+  "renovate":{
+    "branchPrefix": "[Updates]",
+    "packageRules": [
+      {
+        "updateTypes": ["minor", "patch", "pin", "digest"],
+        "automerge": true
+      }
+    ],
+    "extends": [
+      "config:base"
+    ]
+  }
+
 }
