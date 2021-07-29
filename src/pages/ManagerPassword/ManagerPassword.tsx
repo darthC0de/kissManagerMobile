@@ -30,10 +30,8 @@ export default function ManagerPassword (props: any){
     useEffect(() => {
         
         if(updatePasswords || !runned){
-            console.log({updatePasswords,runned})
             updatePasswordsList()
             setUpdatePasswords(false);
-            console.log({updatePasswords,runned})            
         }
         setRunned(true);
         handleLoader()
@@ -58,7 +56,7 @@ export default function ManagerPassword (props: any){
             <View style={styles.groupIcon}>
                 <Ionicons
                     onPress={() => navigate.goBack()}
-                    name="md-arrow-round-back"
+                    name="md-arrow-back"
                     size={40} color="#008891"
                 />
 

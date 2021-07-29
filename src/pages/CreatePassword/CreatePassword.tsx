@@ -83,7 +83,7 @@ export default function CreatePassword(props: any) {
                 <Ionicons
                     style={styles.backIcon}
                     onPress={() => navigate.goBack()}
-                    name="md-arrow-round-back"
+                    name="md-arrow-back"
                     size={40} color="#008891"
                 />
 

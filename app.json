@@ -2,10 +2,10 @@
   "expo": {
     "name": "kissManager",
     "slug": "kissManager",
-    "version": "2.0.0",
+    "version": "1.0.0",
     "description": "Gerenciador de senhas",
     "owner": "darthcode",
-    "githubUrl": "https://github.com/rodcordeiro/kissManagerMobile",
+    "githubUrl": "https://github.com/darthc0de/kissManagerMobile",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "backgroundColor": "#00587A",
