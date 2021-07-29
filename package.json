@@ -41,7 +41,7 @@
   },
   "private": true,
   "renovate":{
-    "branchPrefix": "[Updates]",
+    "branchPrefix": "[Updates]:",
     "packageRules": [
       {
         "updateTypes": ["minor", "patch", "pin", "digest"],
