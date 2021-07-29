@@ -3,14 +3,14 @@ name: "Scan code and validate build"
 on:
   push:
     branches: [
-      "master",
+      "main",
       "feat/**",
       "bug/**",
       "develop"
     ]
   pull_request:
     # The branches below must be a subset of the branches above
-    branches: [ master ]
+    branches: [ main ]
   schedule:
     - cron: '0 3 * * 1'
 
