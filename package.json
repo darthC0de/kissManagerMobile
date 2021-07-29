@@ -40,11 +40,16 @@
     "typescript": "3.9.7"
   },
   "private": true,
-  "renovate":{
+  "renovate": {
     "branchPrefix": "[Updates]:",
     "packageRules": [
       {
-        "updateTypes": ["minor", "patch", "pin", "digest"],
+        "updateTypes": [
+          "minor",
+          "patch",
+          "pin",
+          "digest"
+        ],
         "automerge": true
       }
     ],
@@ -52,5 +57,4 @@
       "config:base"
     ]
   }
-
 }
