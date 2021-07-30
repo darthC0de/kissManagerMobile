@@ -41,7 +41,6 @@ export default function ViewPassword(props:any) {
         
         await PasswordServices.findById(id)
             .then((response: any)=>{
-                 console.log({response})
                 setPwdObj({
                     "icon": response._array[0].icon,
                     "id": response._array[0],
