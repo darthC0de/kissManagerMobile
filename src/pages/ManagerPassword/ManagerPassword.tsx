@@ -24,6 +24,9 @@ export default function ManagerPassword (props: any){
             .then((response: any)=>{
                 setPasswords(response._array)
             })
+            .catch((error: any)=>{
+                console.log(error)
+            })
         
     }
 

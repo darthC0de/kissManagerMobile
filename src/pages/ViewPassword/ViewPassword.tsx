@@ -41,8 +41,15 @@ export default function ViewPassword(props:any) {
         
         await PasswordServices.findById(id)
             .then((response: any)=>{
-                 
-                setPwdObj(response._array[0])
+                 console.log({response})
+                setPwdObj({
+                    "icon": response._array[0].icon,
+                    "id": response._array[0],
+                    "link": response._array[0].link ? response._array[0].link : " ",
+                    "password": response._array[0].password,
+                    "title": response._array[0].title,
+                    "username": response._array[0].username,
+                  })
                 handleLoader()
             })
     }
@@ -51,7 +58,6 @@ export default function ViewPassword(props:any) {
     }
     async function handlePasswordDelete(id: number){
         handleLoader(true)
-        console.log({load})
         await PasswordServices.deleteById(id)
             .then((response: any)=>{
                 navigate.navigate('ManagerPassword',{updatePasswords: true})
