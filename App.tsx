@@ -13,9 +13,10 @@ export default function App() {
         await Updates.reloadAsync();
       }
     }
-    updateApp();
+    // updateApp();
   }, []);
-  new databaseInit
+
+  new databaseInit()
   return (
     <Routes />
   );

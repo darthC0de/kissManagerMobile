@@ -96,7 +96,7 @@ export default function ViewPassword(props:any) {
             <View style={styles.groupIcon}>
                 <Ionicons
                     onPress={() => navigate.navigate('ManagerPassword')}
-                    name="md-arrow-round-back"
+                    name="md-arrow-back"
                     size={40} color="#008891"
                 />
 

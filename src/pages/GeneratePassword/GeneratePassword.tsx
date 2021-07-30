@@ -41,7 +41,7 @@ export default function GeneratePassword() {
             <View style={styles.backIcon}>
                 <Ionicons
                     onPress={() => navigate.navigate('Main')}
-                    name="md-arrow-round-back"
+                    name="md-arrow-back"
                     size={40} color="#008891"
                 />
             </View>
