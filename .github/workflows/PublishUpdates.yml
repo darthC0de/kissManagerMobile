@@ -2,7 +2,7 @@ name: Expo actions
 on:
   push:
     branches:
-      - master
+      - main
 jobs:
   Publish_Updates:
     name: Install and publish
