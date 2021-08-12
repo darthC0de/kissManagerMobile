@@ -19,6 +19,7 @@ export default function GeneratePassword() {
     }
     async function setPasswordToClipboard() {
         if (password.length > 0) {
+            console.log({password})
             await Clipboard.setString(password);
 
             showMessage({

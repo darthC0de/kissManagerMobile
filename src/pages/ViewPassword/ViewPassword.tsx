@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Feather, Ionicons, FontAwesome } from '@expo/vector-icons';
 import Clipboard from '@react-native-community/clipboard';
@@ -84,7 +84,7 @@ export default function ViewPassword(props:any) {
             setPassword(pwdObj.password);
             setLink(pwdObj.link);
         
-    },[load])
+    },[load,pwdObj])
 
     handlePasswordView(identifier)
 
@@ -99,11 +99,17 @@ export default function ViewPassword(props:any) {
                 style={styles.loader}
             />
             <View style={styles.groupIcon}>
+                <TouchableOpacity
+                  onPress={() => {
+                    console.log("Back called")
+                   navigate.navigate("ManagerPassword")
+                  }}
+                >
                 <Ionicons
-                    onPress={() => navigate.navigate('ManagerPassword')}
                     name="md-arrow-back"
                     size={40} color="#008891"
                 />
+                </TouchableOpacity>
 
                 <Feather
                     style={styles.editIcon}
