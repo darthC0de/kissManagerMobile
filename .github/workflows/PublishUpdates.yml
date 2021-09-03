@@ -31,7 +31,7 @@ jobs:
             fi
   Publish_Updates:
       name: Install and publish
-      if: ${{ needs.ValidateActor.outputs.ACTOR }} == true
+      if: ${{needs.ValidateActor.outputs.ACTOR}} == true && ${{needs.ValidateRepo.outputs.REPO}} == true
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v2
