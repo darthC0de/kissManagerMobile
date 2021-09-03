@@ -11,6 +11,7 @@ jobs:
       steps:
         - id: actor
           run: |
+            echo "ACTOR ${{ github.actor }}" ${{ github.actor }}
             if [[ ${{ github.actor }} != *"[bot]" ]];then
                 echo "::set-output name=ACTOR::true" 
             else
@@ -25,8 +26,10 @@ jobs:
         - id: repo
           run: |
             if [[ ${{ github.repository_owner }} == "darthC0de" ]];then
+                echo "Valid ${{ github.repository_owner }}"
                 echo "::set-output name=REPO::true"
             else
+                echo "invalid ${{ github.repository_owner }}"
                 echo "::set-output name=REPO::false"
             fi
   Publish_Updates:
