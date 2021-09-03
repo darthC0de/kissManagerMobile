@@ -4,22 +4,37 @@ on:
     branches:
       - main
 jobs:
+  ValidatePublisher:
+      - name: Validate actor
+        id: actor
+        runs-on: ubuntu-latest
+        run: |
+          if [[ $string != *"[bot]" ]];then
+              echo "::set-output name=ACTOR::true" 
+          else
+              echo "::set-output name=ACTOR::false" 
+          fi
+      - name: Validate repository
+        id: repo
+        if: "${{github.repository_owner == 'darthC0de'}}"
+        run: |
+              echo "::set-output name=REPO::true"    
   Publish_Updates:
-    name: Install and publish
-    if: "${{github.repository_owner == 'darthC0de'}}"
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 14.x
-      - uses: expo/expo-github-action@v6
-        with:
-          expo-version: 4.x
-          expo-cache: true
-          token: ${{ secrets.EXPO_TOKEN }}
-      - run: npm install
-      - run: expo publish
+      name: Install and publish
+      if: job.ValidatePublisher.steps.actor.outputs.ACTOR == true && job.ValidatePublisher.steps.repo.outputs.REPO == true
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+        - uses: actions/setup-node@v2
+          with:
+            node-version: 14.x
+        - uses: expo/expo-github-action@v6
+          with:
+            expo-version: 4.x
+            expo-cache: true
+            token: ${{ secrets.EXPO_TOKEN }}
+        - run: npm install
+        - run: expo publish
   GenerateNewBuild:
     name: Build new artifact
     runs-on: ubuntu-latest
