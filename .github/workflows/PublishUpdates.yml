@@ -11,7 +11,6 @@ jobs:
       steps:
         - id: actor
           run: |
-            echo "ACTOR ${{ github.actor }}" ${{ github.actor }}
             if [[ ${{ github.actor }} != *"[bot]" ]];then
                 echo "::set-output name=ACTOR::true" 
             else
@@ -26,15 +25,13 @@ jobs:
         - id: repo
           run: |
             if [[ ${{ github.repository_owner }} == "darthC0de" ]];then
-                echo "Valid ${{ github.repository_owner }}"
                 echo "::set-output name=REPO::true"
             else
-                echo "invalid ${{ github.repository_owner }}"
                 echo "::set-output name=REPO::false"
             fi
   Publish_Updates:
       name: Install and publish
-      if: needs.ValidateActor.outputs.ACTOR == true && needs.ValidateRepo.outputs.REPO == true
+      if: jobs.ValidateActor.outputs.ACTOR == true && needs.ValidateRepo.outputs.REPO == true
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v2
