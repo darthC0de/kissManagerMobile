@@ -8,17 +8,21 @@ jobs:
       name: Validate actor
       id: actor
       runs-on: ubuntu-latest
-      run: |
-        if [[ $string != *"[bot]" ]];then
-            echo "::set-output name=ACTOR::true" 
-        else
-            echo "::set-output name=ACTOR::false" 
-        fi
+      steps:
+        - name: actor
+          run: |
+            if [[ $string != *"[bot]" ]];then
+                echo "::set-output name=ACTOR::true" 
+            else
+                echo "::set-output name=ACTOR::false" 
+            fi
   ValidateRepo:
       name: Validate repository
       id: repo
       if: "${{github.repository_owner == 'darthC0de'}}"
-      run: |
+      steps:
+        - name: repo
+          run: |
             echo "::set-output name=REPO::true"    
   Publish_Updates:
       name: Install and publish
