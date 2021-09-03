@@ -28,7 +28,7 @@ jobs:
             fi
   Publish_Updates:
       name: Install and publish
-      if: job.ValidateActor.steps.actor.outputs.ACTOR == true && job.ValidateRepo.steps.repo.outputs.REPO == true
+      if: jobs.ValidateActor.steps.actor.outputs.ACTOR == true && jobs.ValidateRepo.steps.repo.outputs.REPO == true
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v2
