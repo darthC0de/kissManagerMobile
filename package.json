@@ -1,4 +1,22 @@
 {
+  "name": "kissmanager",
+  "version": "1.0.0",
+  "description": "Gerenciador de senhas",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darthc0de/kissManagerMobile.git"
+  },
+  "bugs": {
+    "url": "https://github.com/darthc0de/kissManagerMobile/issues"
+  },
+  "homepage": "https://github.com/darthc0de/kissManagerMobile",
+  "authors": [
+    "Rodrigo Cordeiro <rodrigomendoncca@gmail.com> (https://rodcordeiro.com.br)",
+    "Junior Alves",
+    "Guilherme Pedroso",
+    "Carolina Santos"
+  ],
+    
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
@@ -14,7 +32,7 @@
     "@react-native-community/picker": "^1.8.1",
     "@react-navigation/native": "^5.9.4",
     "@react-navigation/stack": "^5.14.5",
-    "expo": "~42.0.1",
+    "expo": "^1.0.0",
     "expo-linear-gradient": "~9.2.0",
     "expo-sqlite": "~9.2.1",
     "expo-status-bar": "~1.0.4",
@@ -38,5 +56,17 @@
     "@types/react-native": "~0.63.2",
     "typescript": "~4.0.0"
   },
-  "private": true
+  "private": false,
+  "renovate":{
+    "branchPrefix": "[Updates]:",
+    "packageRules": [
+      {
+        "updateTypes": ["minor", "patch", "pin", "digest"],
+        "automerge": true
+      }
+    ],
+    "extends": [
+      "config:base"
+    ]
+  }
 }
