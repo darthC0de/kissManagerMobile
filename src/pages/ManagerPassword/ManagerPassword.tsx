@@ -33,7 +33,6 @@ export default function ManagerPassword (props: any){
     useEffect(() => {
         handleLoader()
         if(updatePasswords || !runned){
-            console.log({runned,updatePasswords,load})
             updatePasswordsList()
             setUpdatePasswords(false);
         }
