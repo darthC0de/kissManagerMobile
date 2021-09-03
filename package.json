@@ -63,10 +63,30 @@
       {
         "updateTypes": ["minor", "patch", "pin", "digest"],
         "automerge": true
+      },{
+        "updateTypes": ["major"],
+        "automerge": false
       }
     ],
+    "assignAutomerge":true,
+    "assignees":[
+      "rodcordeiro",
+      "JuniorAlvess"
+    ],
+    "labels": ["dependencies"],
+    "postUpdateOptions":[
+      "npmDedupe",
+      "yarnDedupeFewer"
+    ],
+    "recreateClosed":true,
+    "rebaseWhen":"conflicted",
+    "vulnerabilityAlerts": {
+      "labels": ["security"],
+      "assignees": ["@rodcordeiro"]
+    },
     "extends": [
-      "config:base"
+      "config:base",
+      ":dependencyDashboard"
     ]
   }
 }
