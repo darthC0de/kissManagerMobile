@@ -4,24 +4,25 @@ on:
     branches:
       - main
 jobs:
-  ValidatePublisher:
-      - name: Validate actor
-        id: actor
-        runs-on: ubuntu-latest
-        run: |
-          if [[ ${{ github.actor}} != *"[bot]" ]];then
-              echo "::set-output name=ACTOR::true" 
-          else
-              echo "::set-output name=ACTOR::false" 
-          fi
-      - name: Validate repository
-        id: repo
-        if: "${{github.repository_owner == 'darthC0de'}}"
-        run: |
-              echo "::set-output name=REPO::true"    
+  ValidateActor:
+      name: Validate actor
+      id: actor
+      runs-on: ubuntu-latest
+      run: |
+        if [[ $string != *"[bot]" ]];then
+            echo "::set-output name=ACTOR::true" 
+        else
+            echo "::set-output name=ACTOR::false" 
+        fi
+  ValidateRepo:
+      name: Validate repository
+      id: repo
+      if: "${{github.repository_owner == 'darthC0de'}}"
+      run: |
+            echo "::set-output name=REPO::true"    
   Publish_Updates:
       name: Install and publish
-      if: job.ValidatePublisher.steps.actor.outputs.ACTOR == true && job.ValidatePublisher.steps.repo.outputs.REPO == true
+      if: job.ValidateActor.steps.actor.outputs.ACTOR == true && job.ValidateRepo.steps.repo.outputs.REPO == true
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v2
