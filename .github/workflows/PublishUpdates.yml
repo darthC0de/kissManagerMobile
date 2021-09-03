@@ -9,7 +9,7 @@ jobs:
         id: actor
         runs-on: ubuntu-latest
         run: |
-          if [[ $string != *"[bot]" ]];then
+          if [[ ${{ github.actor}} != *"[bot]" ]];then
               echo "::set-output name=ACTOR::true" 
           else
               echo "::set-output name=ACTOR::false" 
