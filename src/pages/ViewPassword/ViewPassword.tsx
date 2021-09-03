@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Feather, Ionicons, FontAwesome } from '@expo/vector-icons';
 import Clipboard from '@react-native-community/clipboard';
@@ -41,8 +41,14 @@ export default function ViewPassword(props:any) {
         
         await PasswordServices.findById(id)
             .then((response: any)=>{
-                 
-                setPwdObj(response._array[0])
+                setPwdObj({
+                    "icon": response._array[0].icon,
+                    "id": response._array[0],
+                    "link": response._array[0].link ? response._array[0].link : " ",
+                    "password": response._array[0].password,
+                    "title": response._array[0].title,
+                    "username": response._array[0].username,
+                  })
                 handleLoader()
             })
     }
@@ -51,7 +57,6 @@ export default function ViewPassword(props:any) {
     }
     async function handlePasswordDelete(id: number){
         handleLoader(true)
-        console.log({load})
         await PasswordServices.deleteById(id)
             .then((response: any)=>{
                 navigate.navigate('ManagerPassword',{updatePasswords: true})
@@ -79,7 +84,7 @@ export default function ViewPassword(props:any) {
             setPassword(pwdObj.password);
             setLink(pwdObj.link);
         
-    },[load])
+    },[load,pwdObj])
 
     handlePasswordView(identifier)
 
@@ -94,11 +99,17 @@ export default function ViewPassword(props:any) {
                 style={styles.loader}
             />
             <View style={styles.groupIcon}>
+                <TouchableOpacity
+                  onPress={() => {
+                    console.log("Back called")
+                   navigate.navigate("ManagerPassword")
+                  }}
+                >
                 <Ionicons
-                    onPress={() => navigate.navigate('ManagerPassword')}
                     name="md-arrow-back"
                     size={40} color="#008891"
                 />
+                </TouchableOpacity>
 
                 <Feather
                     style={styles.editIcon}

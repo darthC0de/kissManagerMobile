@@ -13,10 +13,10 @@ export default function ManagerPassword (props: any){
     const navigate = useNavigation();
     const [passwords, setPasswords] = useState<Array<iPassword>>([]);
 
-    const [load, setLoad] = useState<boolean>(true);
+    const [load, setLoad] = useState<boolean>(false);
 
     function handleLoader(state: boolean = false){
-        state ? setLoad(state): setLoad(false);
+        load ? setLoad(false): setLoad(true);
     }
     async function updatePasswordsList() {
         
@@ -24,12 +24,16 @@ export default function ManagerPassword (props: any){
             .then((response: any)=>{
                 setPasswords(response._array)
             })
+            .catch((error: any)=>{
+                console.log(error)
+            })
         
     }
 
     useEffect(() => {
-        
+        handleLoader()
         if(updatePasswords || !runned){
+            console.log({runned,updatePasswords,load})
             updatePasswordsList()
             setUpdatePasswords(false);
         }
