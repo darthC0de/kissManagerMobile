@@ -5,10 +5,11 @@ on:
       - main
 jobs:
   ValidateActor:
-      name: Validate actor
       runs-on: ubuntu-latest
+      outputs:
+        ACTOR: ${{ steps.actor.outputs.ACTOR }}
       steps:
-        - name: actor
+        - id: actor
           run: |
             if [[ ${{ github.actor }} != *"[bot]" ]];then
                 echo "::set-output name=ACTOR::true" 
@@ -18,8 +19,10 @@ jobs:
   ValidateRepo:
       name: Validate repository
       runs-on: ubuntu-latest
+      outputs:
+        REPO: ${{ steps.repo.outputs.REPO }}
       steps:
-        - name: repo
+        - id: repo
           run: |
             if [[ ${{ github.repository_owner }} == "darthC0de" ]];then
                 echo "::set-output name=REPO::true"
@@ -28,7 +31,7 @@ jobs:
             fi
   Publish_Updates:
       name: Install and publish
-      if: jobs.ValidateActor.steps.actor.outputs.ACTOR == true && jobs.ValidateRepo.steps.repo.outputs.REPO == true
+      if: needs.ValidateActor.outputs.ACTOR == true && needs.ValidateRepo.outputs.REPO == true
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v2
