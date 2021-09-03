@@ -74,10 +74,6 @@
       "JuniorAlvess"
     ],
     "labels": ["dependencies"],
-    "postUpdateOptions":[
-      "npmDedupe",
-      "yarnDedupeFewer"
-    ],
     "recreateClosed":true,
     "rebaseWhen":"conflicted",
     "vulnerabilityAlerts": {
