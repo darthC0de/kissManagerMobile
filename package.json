@@ -56,34 +56,5 @@
     "@types/react-native": "0.64.13",
     "typescript": "4.4.2"
   },
-  "private": false,
-  "renovate":{
-    "branchPrefix": "updates/",
-    "packageRules": [
-      {
-        "updateTypes": ["minor", "patch", "pin", "digest"],
-        "automerge": true
-      },{
-        "updateTypes": ["major"],
-        "automerge": false
-      }
-    ],
-    "assignAutomerge":true,
-    "assignees":[
-      "rodcordeiro",
-      "JuniorAlvess"
-    ],
-    "labels": ["dependencies"],
-    "recreateClosed":true,
-    "rebaseWhen":"conflicted",
-    "vulnerabilityAlerts": {
-      "labels": ["security"],
-      "assignees": ["@rodcordeiro"]
-    },
-    "extends": [
-      "config:base",
-      ":dependencyDashboard",
-      "github>whitesource/merge-confidence:beta"
-    ]
-  }
+  "private": false
 }
