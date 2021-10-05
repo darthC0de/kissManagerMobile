@@ -51,7 +51,7 @@
     "react-navigation": "^4.4.4"
   },
   "devDependencies": {
-    "@babel/core": "7.15.4",
+    "@babel/core": "7.15.5",
     "@types/react": "17.0.27",
     "@types/react-native": "0.65.5",
     "typescript": "4.4.3"
