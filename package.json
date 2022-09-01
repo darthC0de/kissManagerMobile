@@ -32,7 +32,7 @@
     "@react-native-community/picker": "^1.8.1",
     "@react-navigation/native": "^6.0.0",
     "@react-navigation/stack": "^6.0.0",
-    "expo": "~43.0.0",
+    "expo": "~46.0.9",
     "expo-linear-gradient": "~9.2.0",
     "expo-sqlite": "~9.2.1",
     "expo-status-bar": "~1.0.4",
