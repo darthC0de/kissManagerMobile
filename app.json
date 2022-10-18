@@ -17,9 +17,7 @@
     "updates": {
       "fallbackToCacheTimeout": 30000
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
@@ -34,8 +32,8 @@
       },
       "package": "com.darthcode.kissManager"
     },
-    "notification":{
-      "color":"#00587A"
+    "notification": {
+      "color": "#00587A"
     }
   }
 }
