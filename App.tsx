@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
-import * as Updates from "expo-updates";
+import * as Updates from 'expo-updates';
 
 import Routes from './src/routes';
-import databaseInit from './src/database/databaseInit';
 
 export default function App() {
   useEffect(() => {
@@ -13,11 +12,11 @@ export default function App() {
         await Updates.reloadAsync();
       }
     }
-    // updateApp();
+    if (process.env.NODE_ENV !== 'development') {
+      updateApp();
+    }
   }, []);
 
-  new databaseInit()
-  return (
-    <Routes />
-  );
+  // new databaseInit();
+  return <Routes />;
 }
