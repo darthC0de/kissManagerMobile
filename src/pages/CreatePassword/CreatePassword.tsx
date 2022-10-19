@@ -84,7 +84,9 @@ export default function CreatePassword(props: any) {
       link,
       icon,
     );
-    if (!title && !password) {return;}
+    if (!title && !password) {
+      return;
+    }
     await PasswordServices.addData(pwdObj)
       .then(async response => {
         console.log(response);
@@ -180,7 +182,7 @@ export default function CreatePassword(props: any) {
               <Feather
                 key={counter}
                 style={icon == i ? styles.iconActive : styles.icon}
-
+                onPress={() => {
                   setIcon(i);
                 }}
                 name={i}
@@ -403,4 +405,4 @@ const styles = StyleSheet.create({
     top: 50,
     alignSelf: 'center',
   },
-})
+});

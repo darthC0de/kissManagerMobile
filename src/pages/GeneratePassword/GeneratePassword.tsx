@@ -1,51 +1,43 @@
-import React, { useState } from 'react';
-import { View, Text, ScrollView, StyleSheet, Alert } from 'react-native';
+import React, { useState, useCallback } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { RectButton } from 'react-native-gesture-handler';
-import { LinearGradient } from 'expo-linear-gradient';
-import { Feather, Ionicons } from '@expo/vector-icons';
-import Clipboard from '@react-native-community/clipboard';
+import { Feather } from '@expo/vector-icons';
+import * as Clipboard from 'expo-clipboard';
 import FlashMessage, { showMessage } from 'react-native-flash-message';
 
+import { Button } from '../../components';
+import { ButtonsContainer, Container, PasswordContainer } from './styles';
 import passwordGenerator from '../../utils/passwordGenerator';
 
 export default function GeneratePassword() {
   const [password, setPassword] = useState<string>('');
   const navigate = useNavigation();
 
-  async function getPassword() {
+  const getPassword = useCallback(async () => {
     let pwd = await passwordGenerator();
     setPassword(pwd);
-  }
-  async function setPasswordToClipboard() {
-    if (password.length > 0) {
-      await Clipboard.setString(password);
+  }, []);
 
-      showMessage({
-        message: 'Senha copiada com sucesso!',
-        type: 'success',
-      });
-    } else {
+  const setPasswordToClipboard = useCallback(async () => {
+    if (password.length <= 0) {
       showMessage({
         message: 'Pressione o botão (Gerar) primeiro!',
         type: 'danger',
       });
+      return;
     }
-  }
+    await Clipboard.setStringAsync(password);
+    showMessage({
+      message: 'Senha copiada com sucesso!',
+      type: 'success',
+    });
+  }, [password]);
 
   return (
-    <View style={styles.container}>
+    <Container>
       <FlashMessage position="top" />
 
-      <View style={styles.backIcon}>
-        <Ionicons
-          onPress={() => navigate.navigate('Main')}
-          name="md-arrow-back"
-          size={40}
-          color="#008891"
-        />
-      </View>
-      <View style={styles.containerGenerate}>
+      <PasswordContainer style={styles.containerGenerate}>
         <View style={styles.contentGenerate}>
           <View style={styles.passwordOutput}>
             {password.length > 0 ? (
@@ -63,53 +55,26 @@ export default function GeneratePassword() {
             />
           </View>
         </View>
-        <View style={styles.buttonAndIcon}>
-          <RectButton style={styles.button} onPress={() => getPassword()}>
-            <LinearGradient
-              colors={['#0080b3', '#006e99', '#005b80', '#00587A']}
-              style={{
-                position: 'absolute',
-                left: 0,
-                right: 0,
-                top: 0,
-                bottom: 0,
-                borderRadius: 15,
-
-                flexDirection: 'row',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              <Text style={styles.textButton}>Gerar</Text>
-            </LinearGradient>
-          </RectButton>
-
-          <Feather
-            onPress={() => navigate.navigate('CreatePassword', { password })}
-            style={styles.saveIcon}
-            name="save"
-            size={35}
-            color="#fff"
-          />
-        </View>
-      </View>
-    </View>
+      </PasswordContainer>
+      <ButtonsContainer style={styles.buttonAndIcon}>
+        <Button
+          onPress={() => getPassword()}
+          text="Gerar"
+          style={{ width: 120 }}
+        />
+        <Feather
+          onPress={() => navigate.navigate('CreatePassword', { password })}
+          style={styles.saveIcon}
+          name="save"
+          size={35}
+          color="#fff"
+        />
+      </ButtonsContainer>
+    </Container>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#0F3057',
-    flex: 1,
-  },
-
-  backIcon: {
-    width: 50,
-
-    marginTop: 10,
-    marginLeft: 10,
-  },
-
   containerGenerate: {
     width: '90%',
     height: 250,

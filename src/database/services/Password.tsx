@@ -54,7 +54,7 @@ export default class PasswordServices {
         txError => {
           reject(txError);
         },
-
+      ),
     );
   }
 
@@ -82,8 +82,9 @@ export default class PasswordServices {
         },
         txError => {
           console.log(txError);
-
-            }));
+        },
+      ),
+    );
   }
 
   static findById(id: number) {
@@ -99,7 +100,9 @@ export default class PasswordServices {
           ),
             (sqlError: Error) => {
               console.log(sqlError);
-            };}, (txError) => {
+            };
+        },
+        txError => {
           console.log(txError);
         },
       ),
@@ -115,7 +118,9 @@ export default class PasswordServices {
           }),
             (sqlError: Error) => {
               console.log(sqlError);
-            };}, (txError) => {
+            };
+        },
+        txError => {
           console.log(txError);
         },
       ),
